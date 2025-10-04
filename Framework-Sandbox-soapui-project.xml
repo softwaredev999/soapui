@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="491d33fb-a894-40af-be2e-2707943e41e0" activeEnvironment="Default" name="Framework Sandbox" resourceRoot="" soapui-version="5.8.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="61f5e307-b727-4b9b-aed3-35d3011fae63" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://jsonplaceholder.typicode.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint></con:endpoints><con:resource name="Posts" path="/posts" id="fd79801a-28f0-4353-8587-ad0f9193c5ec"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:resource name="{id}" path="{id}" id="4f9978cd-4832-4b04-83b8-cb41be6b3f03"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>id</con:value><con:style>TEMPLATE</con:style><con:default>id</con:default></con:parameter></con:parameters><con:method name="Method 1" id="ca4f4221-1597-48f5-97c6-5aa5e88144fa" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ns="https://jsonplaceholder.typicode.com/posts/1">ns:Response</con:element></con:representation><con:request name="Request 1" id="dfa40209-3305-4347-82f6-f52a625c6608" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="Post by Id" path="{id}" id="9e9066ab-940e-43b6-a60e-46ba41338f2f"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>id</con:value><con:style>TEMPLATE</con:style><con:default>id</con:default></con:parameter></con:parameters><con:method name="Method 1" id="f7825f8b-7b2d-46e1-8baf-0794285cbb53" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ns="https://jsonplaceholder.typicode.com/posts/1">ns:Response</con:element></con:representation><con:request name="Request 1" id="9cc3fe85-f62d-475a-a757-5197735c29ec" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{
+  "id": 1,
+  "title": "Updated from SoapUI",
+  "body": "New body text",
+  "userId": 1
+}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:method name="Get List" id="cdaeb185-f307-4718-a1b0-5e6a5d379a16" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Get Single" id="563b0603-26a7-4986-a1f2-5dab918c886f" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request><con:request name="Get All" id="a32e2776-0166-464d-bc92-2c818aeed1d5" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="POST create" id="c699c6b5-89e6-4f76-8c97-421c1aec7f20" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>201</con:status><con:params/><con:element xmlns:pos="https://jsonplaceholder.typicode.com/posts">pos:Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" id="7e32e9b3-a5ae-446b-87f3-7a863afe8380" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{"title":"Created from SoapUI","body":"Hello","userId":100}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request><con:request name="Create post" id="01c50437-43a5-4635-b7f2-ecdce1594e9e" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{"title":"Created from SoapUI","body":"jhho","userId":1}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="PUT" id="4992552d-4fbd-467b-92ba-eb56e82d03d5" method="PUT"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>404</con:status><con:params/><con:element>Fault</con:element></con:representation><con:request name="Request 1" id="532e57bf-35d6-418d-8c0f-9d110a3a05df" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{
+  "id": 1,
+  "title": "Updated from SoapUI",
+  "body": "New body text",
+  "userId": 1
+}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="Delete" id="cc6c4989-413f-4b86-8003-cb48f060860d" method="DELETE"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" id="b5dbe6bc-4654-46e3-9222-eab2d31d2713" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>fetch('https://jsonplaceholder.typicode.com/posts/1', {
+  method: 'DELETE'
+})
+.then(response => {
+  if (response.ok) {
+    console.log('Resource deleted successfully');
+  } else {
+    console.log('Error deleting resource');
+  }
+})</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="posts two" path="/comments" id="ab7981d5-df9b-46e0-81ef-d06319cbec8e"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" id="e1d32ae6-5c33-4a7f-a2ff-6d1558374ff4" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" id="71c07638-130e-4fba-ab50-8838d616bb4b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="1e5d4b84-b2d2-428f-b6c5-531d5bc2dca2" name="Sandbox Suite">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="b6beeb77-d0d9-4fd7-97cf-a82d03d4d0d4" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="automation" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="groovy" name="Driver - Demo" id="468d81bb-eb30-4cec-8f50-268786a80deb" disabled="true">
+                <con:settings/>
+                <con:config><script>import com.eviware.soapui.SoapUI
+log.info "DRIVER TEST STEP "
+// get the Project object from the step's context
+def proj = context.testCase.testSuite.project
+// read BASE_DIR written by the Load Script (fallback to global if missing)
+def BASE = proj.getPropertyValue('BASE_DIR_PROJ')
+                        assert BASE : "BASE_DIR/ SOAPUI_BASE not set"
+                        log.info "BASE " + BASE
+                        // compile (once per run) and cache the Lib class
+                        def LibClass = context['LibClass']
+                        if (!LibClass) {
+                        def gcl = new GroovyClassLoader(this.class.classLoader)
+                        LibClass = gcl.parseClass(new File("${BASE}/lib/Lib.groovy"))
+                        context['LibClass'] = LibClass
+                        }
+
+                        // use it
+                        LibClass.ping(this, "Driverhh")
+                        SoapUI.log("hello soapui log")
+                        def baseDir =
+                        testRunner.testCase.testSuite.project.getPropertyValue("BASE_DIR_PROJ")
+                        log.info("BASE_DIR+++: " + baseDir)
+                    </script></con:config>
+            </con:testStep>
+            <con:testStep type="groovy" name="Driver - Demo - Two" id="d3b7e9be-d070-412f-ae2c-58c225665c19" disabled="true">
+                <con:settings/>
+                <con:config>
+                    <script>
+                        import com.eviware.soapui.SoapUI
+                        //
+                        def LibClass = context['LibClass']
+                        if (!LibClass) { // if you ran this step alone
+                        def BASE = SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+                        def gcl = new GroovyClassLoader(this.class.classLoader)
+                        LibClass = gcl.parseClass(new File("${BASE}/lib/Lib.groovy"))
+                        context['LibClass'] = LibClass
+                        }
+
+                        LibClass.ping(this, "Driver")
+                    </script>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="groovy" name="DriverApproveUpdate" id="e97b4964-e8d4-4da2-ba0f-306a30f5b2ce" disabled="true">
+                <con:settings/>
+                <con:config><script>
+                        import org.apache.poi.ss.usermodel.*
+
+                        def filePath = "C:/Users/safiu/Downloads/soapui.xlsx"
+                        def fileInputStream = new FileInputStream(new File(filePath))
+                        def workbook = WorkbookFactory.create(fileInputStream)
+                        def sheet = workbook.getSheetAt(0) // Get the first sheet
+
+                    
+                        // Get headers
+                        def headers = []
+                        def headerRow = sheet.getRow(0)
+                        headerRow.each { cell ->
+                        headers.add(getCellValue(cell))
+                        }
+
+                        // Iterate through rows
+                        def rowIndex = 0
+                        sheet.each { row ->
+                        if (rowIndex > 0) { // Skip header row
+                        def rowValues = [:]
+                        headers.eachWithIndex { header, index ->
+                        def cell = row.getCell(index)
+                        rowValues[header] = new DataFormatter().formatCellValue(cell)
+
+                        // rowValues[header] = getCellValue(cell)
+                        }
+                        log.info "Row $rowIndex Values: $rowValues"
+                        log.info rowValues["name"].toString()
+                        log.info rowValues["id"].toString()
+                        // Use rowValues to make API call
+                        // For example:
+                        // def apiResponse = apiCall(rowValues)
+                        }
+                        rowIndex++
+                        }
+
+                        // Helper method to get cell value
+                        def getCellValue(Cell cell) {
+                        if (cell == null) return ""
+                        switch (cell.cellType) {
+                        case CellType.STRING:
+                        return cell.stringCellValue
+                        case CellType.NUMERIC:
+                        return cell.numericCellValue
+                        case CellType.BOOLEAN:
+                        return cell.booleanCellValue
+                        default:
+                        return ""
+                        }
+                        }
+
+                        // Close the workbook and input stream
+                        workbook.close()
+                        fileInputStream.close()</script></con:config>
+            </con:testStep>
+            <con:testStep type="groovy" name="Driver2" id="b72fef9c-419c-43fc-82e0-f532b5818098" disabled="true"><con:settings/><con:config><script>evaluate(new File(context.expand('${#Project#LIB_DIR}') + '/Boot.groovy')) 
+def Lib = context['Lib']  
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')              // resolves EXCEL_PATH or default log.info "file path " + filePath 
+log.info "file path " + filePath
+def data = Lib.readXlsx(filePath)
+log.info "data " + data
+
+log.info "Rows read = ${data.size()}"
+data.eachWithIndex { row, i ->
+  log.info "Row ${i+1}: ${row}"
+  // Example access:
+  def id   = row['id']
+  def name = row['name']
+
+  // Call your API here using 'id', 'name', etc.
+  // def res = context.expand("...") or use HTTP Request step properties
+
+  // inside Driver2, after you have id/name for the current row:
+  def project = context.testCase.testSuite.project
+  def suite   = project.getTestSuiteByName('USS APIs')
+
+ // choose the targets you want to run
+ ['TestCase 1', 'TestCase 2'].each { tcName ->
+    def tc = suite.getTestCaseByName(tcName)
+
+    // pass row values as TestCase properties (the target case can ${#TestCase#id}, etc.)
+    tc.setPropertyValue('id',   id ?: '')
+    tc.setPropertyValue('name', name ?: '')
+
+    // run synchronously (false = wait)
+    def runner = tc.run(new com.eviware.soapui.support.types.StringToObjectMap(), false)
+    log.info "${tcName} finished with status: ${runner.getStatus()}"
+}
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver3" id="9a845f58-b799-4cf7-a4d7-1638f522d373" disabled="true"><con:settings/><con:config><script>// Guard-load Boot if needed
+def Lib = context['Lib']
+def Orchestrator = context['Orchestrator']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class)) {
+  def boot = new File(new File(context.expand('${projectDir}')), 'lib/Boot.groovy')
+  evaluate(boot)
+  Lib = context['Lib']; Orchestrator = context['Orchestrator']
+}
+
+// 1) Resolve and read data
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')
+def data = Lib.readXlsx(filePath)
+log.info "Rows read = ${data.size()}"
+
+// 2) For each row → run your workflow
+def project = context.testCase.testSuite.project
+def suiteName = 'USS APIs'
+def flow = ['TestCase 1', 'TestCase 2']   // your ordered workflow
+
+data.eachWithIndex { row, i ->
+  def props = [
+    id  : row['id'] ?: '',
+    name: row['name'] ?: ''
+  ]
+  def results = Orchestrator.runCases(project, suiteName, flow, props, true)
+  log.info "Row ${i+1} workflow: ${results}"
+}
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver4" id="4639f70e-a80e-4b1c-b8ca-94742752ca90" disabled="true"><con:settings/><con:config><script>// ---- Guard-load Boot if needed (no duplicate defs) ----
+import groovy.json.JsonOutput
+
+def Lib         = context['Lib']
+def Orchestrator= context['Orchestrator']
+def Columns     = context['Columns']
+
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) || !(Columns instanceof Class)) {
+  def boot = new File(new File(context.expand('${projectDir}')), 'lib/Boot.groovy')
+  evaluate(boot)
+  Lib          = context['Lib']
+  Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']
+}
+
+// ---- Resolve and read data ----
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')   // e.g. test-data/soapui.xlsx
+def data     = Lib.readXlsx(filePath)
+log.info "Rows read = ${data.size()}"
+log.info "Headers seen: ${data ? data[0].keySet() : '[]'}"
+
+// Show first row
+if (data) log.info "Row1 map: ${data[0]}"
+
+// Dump everything (pretty JSON) – optional
+log.info "\n" + JsonOutput.prettyPrint(JsonOutput.toJson(data))
+log.info "Rows read = ${data.size()}"
+log.info "Headers seen: ${data ? data[0].keySet() : '[]'}"
+
+// ---- Run workflow per row ----
+def project   = context.testCase.testSuite.project
+def suiteName = 'USS APIs'
+def flow      = ['TestCase 1', 'TestCase 2']
+
+data.eachWithIndex { row, i ->
+  def id   = row[Columns.NAMES.ID]   ?: ''
+  def name = row[Columns.NAMES.NAME] ?: ''
+  log.info "111111 Row ${i+1}: id=${id}, name=${name}"
+
+  def props = [(Columns.NAMES.ID): id, (Columns.NAMES.NAME): name]
+  def results = Orchestrator.runCases(project, suiteName, flow, props, true)
+  log.info "222222 Row ${i+1} workflow: ${results}"
+  log.info "\n\n"
+}
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver5" id="8ede4ec5-9e7f-4e70-a56b-4ddbfcf770ef" disabled="true"><con:settings/><con:config><script>// ---- Driver (final) ----
+import groovy.json.JsonOutput
+
+// 0) Load Boot once if needed
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) || !(Columns instanceof Class)) {
+  def boot = new File(new File(context.expand('${projectDir}')), 'lib/Boot.groovy')
+  evaluate(boot)
+  Lib          = context['Lib']
+  Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']
+}
+
+// 1) Resolve and read data
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')   // TestCase prop with file name
+def data     = Lib.readXlsx(filePath)
+
+log.info "Rows read = ${data.size()}"
+log.info "Headers seen: ${data ? data[0].keySet() : '[]'}"
+if (data) {
+  log.info "Row1 map: ${data[0]}"
+  // Optional full dump
+  // log.info "\n" + JsonOutput.prettyPrint(JsonOutput.toJson(data))
+}
+
+// 2) Prepare workflow targets
+def project   = context.testCase.testSuite.project
+def suiteName = 'USS APIs'
+def flowProp  = context.testCase.getPropertyValue('FLOW')
+def flow      = flowProp ? (flowProp.split(/\s*,\s*/).toList()) : ['Request AA','Approve AA']
+
+// 3) Iterate rows
+data.eachWithIndex { row, i ->
+  // Normalize/trim
+  def id   = (row[Columns.NAMES.ID]   ?: '').toString().trim()
+  def name = (row[Columns.NAMES.NAME] ?: '').toString().trim()
+
+  // Skip fully blank rows
+  if (!id &amp;&amp; !name) {
+    log.info "Row ${i+1}: skipped (blank)"
+    return
+  }
+
+  // For visibility in target cases
+  context.testCase.setPropertyValue(Columns.NAMES.ID,   id)
+  context.testCase.setPropertyValue(Columns.NAMES.NAME, name)
+
+  // Pre-run log
+  log.info "111111 Row ${i+1}: id=${id}, name=${name}"
+
+  // Run the orchestrated flow with safety
+  def props = [(Columns.NAMES.ID): id, (Columns.NAMES.NAME): name]
+  try {
+    def results = Orchestrator.runCases(project, suiteName, flow, props, true)
+    log.info "222222 Row ${i+1} workflow: ${results}"
+  } catch (Throwable t) {
+    log.error "222222 Row ${i+1} workflow FAILED: ${t.class.simpleName}: ${t.message}", t
+  }
+
+  log.info "" // spacer
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver6" id="036c5d45-c39f-4797-a97d-799248a2cfd5" disabled="true"><con:settings/><con:config><script>// Driver.groovy — one driver for everything
+log.info "++++++++++DRIVER 6 \n\n"
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib']; Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']; Flows     = context['Flows']
+}
+
+// 1) Read table
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')  // filename in test-data/
+def rows     = Lib.readXlsx(filePath)
+log.info "Rows read = ${rows.size()}"
+
+// 2) Get default flow if row doesn't specify one
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// 3) Iterate and run
+def project = context.testCase.testSuite.project
+rows.eachWithIndex { row, i ->
+  // Build props from the row (you can pass whole row)
+  Map&lt;String,String> props = [:]
+  row.each { k,v -> props[k] = (v ?: '').toString() }
+
+  // Skip if the Result column says DID NOT RUN
+  def currentResult = (row['Result'] ?: '').toString().trim()
+  if (currentResult.equalsIgnoreCase("DID NOT RUN")) {
+    log.info "Row ${i+1}: skipped because Result = DID NOT RUN"
+    return
+  }
+
+  // Decide flow: Excel 'flow' column wins, else TestCase property default
+  def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+  log.info "Row ${i+1}: flow=${flowName}, id=${row[Columns.NAMES.ID]}, name=${row[Columns.NAMES.NAME]}"
+
+  try {
+    def results = Orchestrator.runFlowByName(project, Flows.REGISTRY, flowName, props, true)
+    log.info "Row ${i+1} results: ${results}"
+
+    // Decide PASS if all cases FINISHED, else FAIL
+    def pass = results &amp;&amp; results.every { it.status?.equalsIgnoreCase('FINISHED') }
+    def outcome = pass ? 'PASS' : 'FAIL'
+
+    // Write back outcome under Result header (row i+1 because header is row 0)
+    Lib.writeCellByHeader(filePath, null, 'Result', i, outcome)
+
+  } catch (Throwable t) {
+    log.error "Row ${i+1} FAILED in flow ${flowName}: ${t.message}", t
+    Lib.writeCellByHeader(filePath, null, 'Result', i, 'FAIL')
+  }
+
+  log.info "" // spacer
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver7 - write to excel file" id="25ddef6f-e8b5-41c8-83aa-69f1cd4ea922" disabled="true"><con:settings/><con:config><script>// Driver.groovy — one driver for everything
+log.info "++++++++++DRIVER 6 \n\n"
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib']; Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']; Flows     = context['Flows']
+}
+
+// 1) Read table
+def filePath = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')  // filename in test-data/
+def rows     = Lib.readXlsx(filePath)
+log.info "Rows read = ${rows.size()}"
+
+// 2) Get default flow if row doesn't specify one
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// 3) Iterate and run
+def project = context.testCase.testSuite.project
+
+rows.eachWithIndex { row, i ->
+  // Build props from the row (you can pass whole row)
+  Map&lt;String,String> props = [:]
+  row.each { k,v -> props[k] = (v ?: '').toString() }
+
+  // Decide flow: Excel 'flow' column wins, else TestCase property default
+  def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+  log.info "Row ${i+1}: flow=${flowName}, id=${row[Columns.NAMES.ID]}, name=${row[Columns.NAMES.NAME]}"
+
+  try {
+    def results = Orchestrator.runFlowByName(project, Flows.REGISTRY, flowName, props, true)
+    log.info "Row ${i+1} results: ${results}"
+  } catch (Throwable t) {
+    log.error "Row ${i+1} FAILED in flow ${flowName}: ${t.message}", t
+  }
+
+  
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Driver8 - Run Multiple Files" id="59fe2c80-c54a-441d-b6b5-40363c46170c" disabled="true"><con:settings/><con:config><script>log.info "++++++++++ MULTI-FILE DRIVER ++++++++++\n"
+
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib'];        Orchestrator = context['Orchestrator']
+  Columns      = context['Columns'];    Flows        = context['Flows']
+}
+
+// -------- 1) Resolve list of data files --------
+def dataDir   = new File(context.expand('${projectDir}'), 'test-data')
+def listProp  = context.testCase.getPropertyValue('DATA_FILES')   // comma-separated list
+List&lt;File> files = []
+
+if (listProp?.trim()) {
+  files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+} else {
+  // Fallback: use single file from TS_01_DATA_FILE if set
+  def single = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')
+  files = [ new File(single) ]
+}
+
+files = files.findAll { it.exists() }
+if (files.isEmpty()) {
+  throw new FileNotFoundException("No data files found. Checked: DATA_FILES and TS_01_DATA_FILE under ${dataDir.absolutePath}")
+}
+
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+// -------- 2) Flow default (if row doesn't specify) --------
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// -------- 3) Per-file runner (sequential to avoid XLSX write conflicts) --------
+def runFile = { File f ->
+def path = f.absolutePath
+def rows = Lib.readXlsx(path)
+//  log.info "[${f.name}] Rows read = ${rows.size()}"
+//  log.info "\n\n\n=========[${f.name}] Rows read = ${rows.size()}"
+log.info "\n=========[" + f.name + "] Rows read = " + rows.size() + "=========\n"
+
+def project = context.testCase.testSuite.project
+int passCnt = 0, failCnt = 0, skipCnt = 0
+
+rows.eachWithIndex { row, i ->
+ 
+ def currentResult = (row['Result'] ?: '').toString().trim()
+ log.info "Result" + currentResult
+ if (currentResult.equalsIgnoreCase('DID NOT RUN')) {
+//      skipCnt++; log.info "[${f.name}] Row ${i+1}: skipped (Result = DID NOT RUN)"
+//      return
+//    }
+
+    // Build props from the entire row (keys are header names)
+    Map&lt;String,String> props = [:]
+    row.each { k, v -> props[k] = (v ?: '').toString() }
+
+    // Decide which flow to run (row 'flow' column wins)
+    def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+    def idVal    = (row[Columns.NAMES.ID]   ?: '').toString().trim()
+    def nameVal  = (row[Columns.NAMES.NAME] ?: '').toString().trim()
+
+    log.info "[${f.name}] Row ${i+1}: flow=${flowName}, id=${idVal}, name=${nameVal}"
+
+    try {
+      def results = Orchestrator.runFlowByName(project, Flows.REGISTRY, flowName, props, true)
+      log.info "[${f.name}] Row ${i+1} results: ${results}"
+
+      // PASS if every case finished
+      def pass = results &amp;&amp; results.every { it.status?.equalsIgnoreCase('FINISHED') }
+      Lib.writeCellByHeader(path, null, 'Result', i + 1, pass ? 'PASS' : 'FAIL')
+      if (pass) passCnt++ else failCnt++
+    } catch (Throwable t) {
+      log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+      Lib.writeCellByHeader(path, null, 'Result', i + 1, 'FAIL')
+      failCnt++
+    }
+  }
+  }
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// -------- 4) Run every file --------
+files.each { runFile(it) }
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+</script></con:config></con:testStep><con:testStep type="groovy" name="USS API Driver 9" id="75623755-1a5b-488e-aac5-ec1b791b1b03" disabled="true"><con:settings/><con:config><script>log.info "++++++++++ MULTI-FILE DRIVER ++++++++++\n"
+import groovy.json.JsonBuilder
+
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib'];        Orchestrator = context['Orchestrator']
+  Columns      = context['Columns'];    Flows        = context['Flows']
+}
+
+// -------- 1) Resolve list of data files --------
+def dataDir   = new File(context.expand('${projectDir}'), 'test-data')
+def listProp  = context.testCase.getPropertyValue('DATA_FILES')   // comma-separated list
+List&lt;File> files = []
+
+if (listProp?.trim()) {
+  files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+} else {
+  // Fallback: use single file from TS_01_DATA_FILE if set
+  def single = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')
+  files = [ new File(single) ]
+}
+
+files = files.findAll { it.exists() }
+if (files.isEmpty()) {
+  throw new FileNotFoundException("No data files found. Checked: DATA_FILES and TS_01_DATA_FILE under ${dataDir.absolutePath}")
+}
+
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+// -------- 2) Flow default (if row doesn't specify) --------
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// -------- 3) Per-file runner (sequential to avoid XLSX write conflicts) --------
+def runFile = { File f ->
+def path = f.absolutePath
+def rows = Lib.readXlsx(path)
+//  log.info "[${f.name}] Rows read = ${rows.size()}"
+//  log.info "\n\n\n=========[${f.name}] Rows read = ${rows.size()}"
+log.info "\n=========[" + f.name + "] Rows read = " + rows.size() + "=========\n"
+
+def project = context.testCase.testSuite.project
+int passCnt = 0, failCnt = 0, skipCnt = 0
+
+rows.eachWithIndex { row, i ->
+ 
+ def currentResult = (row['Result'] ?: '').toString().trim()
+ log.info "Result" + currentResult
+ if (!currentResult.equalsIgnoreCase('DID NOT RUN')) {
+//      skipCnt++; log.info "[${f.name}] Row ${i+1}: skipped (Result = DID NOT RUN)"
+//      return
+//    }
+
+    // Build props from the entire row (keys are header names)
+    Map&lt;String,String> props = [:]
+    row.each { k, v -> props[k] = (v ?: '').toString() }
+
+    // Decide which flow to run (row 'flow' column wins)
+    def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+    def idVal    = (row[Columns.NAMES.ID]   ?: '').toString().trim()
+    def nameVal  = (row[Columns.NAMES.NAME] ?: '').toString().trim()
+
+    log.info "[${f.name}] Row ${i+1}: flow=${flowName}, id=${idVal}, name=${nameVal}"
+
+    try {
+
+    	// props already built from the row:
+//Map&lt;String,String> props = [:]
+//row.each { k, v -> props[k] = (v ?: '').toString() }
+// Normalize Excel headers -> API-friendly names used in bodies
+//props['alt'] = (row[Columns.NAMES.ALT] ?: '').toString().trim()
+//
+//// (optional) strip units if Excel has "50 ft" etc.
+//props['alt'] = props['alt'].replaceAll('[^0-9.+-]', '')
+// Make the whole row available to the other test cases
+project.setPropertyValue('ROW_JSON', new JsonBuilder(props).toString())
+      def results = Orchestrator.runFlowByName(project, Flows.REGISTRY, flowName, props, true)
+      log.info "[${f.name}] Row ${i+1} results: ${results}"
+
+      // PASS if every case finished
+      def pass = results &amp;&amp; results.every { it.status?.equalsIgnoreCase('FINISHED') }
+      Lib.writeCellByHeader(path, null, 'Result', i + 1, pass ? 'PASS' : 'FAIL')
+      if (pass) passCnt++ else failCnt++
+    } catch (Throwable t) {
+      log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+      Lib.writeCellByHeader(path, null, 'Result', i + 1, 'FAIL')
+      failCnt++
+    }
+  }
+  }
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// -------- 4) Run every file --------
+files.each { runFile(it) }
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+</script></con:config></con:testStep><con:testStep type="groovy" name="USS API Driver" id="27ca92b2-822e-4166-a850-23b8f33e3b20" disabled="true"><con:settings/><con:config><script>// Driver: run one or more Excel files, each row picks a flow and runs its test cases.
+// - Loads Lib/Orchestrator/Columns/Flows via Boot (if not already loaded)
+// - Builds the data file list (from DATA_FILES or TS_01_DATA_FILE)
+// - For each file: read rows, pick flow (row "flow" or FLOW_DEFAULT), run, write Result back
+
+log.info "++++++++++ MULTI-FILE DRIVER ++++++++++\n"
+import groovy.json.JsonBuilder
+
+// Load/capture library classes from context (Boot adds them if missing)
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib']
+  Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']
+  Flows        = context['Flows']
+}
+
+// 1) Build the list of data files to run
+def dataDir  = new File(context.expand('${projectDir}'), 'test-data')
+def listProp = context.testCase.getPropertyValue('DATA_FILES')    // comma-separated file names
+List&lt;File> files = []
+if (listProp?.trim()) {
+  files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+} else {
+  def single = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')   // fallback to single file prop
+  files = [ new File(single) ]
+}
+files = files.findAll { it.exists() }
+if (files.isEmpty()) {
+  throw new FileNotFoundException("No data files found. Checked: DATA_FILES and TS_01_DATA_FILE under ${dataDir.absolutePath}")
+}
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+// 2) Default flow name if the row does not specify one
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// 3) Per-file execution (sequential to avoid xlsx write conflicts)
+def runFile = { File f ->
+  def path = f.absolutePath
+  def rows = Lib.readXlsx(path)
+  log.info "\n=========[${f.name}] Rows read = ${rows.size()}=========\n"
+
+  def project = context.testCase.testSuite.project
+  int passCnt = 0, failCnt = 0, skipCnt = 0
+
+  rows.eachWithIndex { row, i ->
+    def currentResult = (row['Result'] ?: '').toString().trim()
+    log.info "Result" + currentResult
+
+    if (currentResult.equalsIgnoreCase('DID NOT RUN')) {
+      // Build properties map from the entire row (headers → values)
+      Map&lt;String,String> props = [:]
+      row.each { k, v -> props[k] = (v ?: '').toString() }
+
+      // Pick the flow (row "flow" wins; otherwise use default)
+      def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+      def idVal    = (row[Columns.NAMES.ID]   ?: '').toString().trim()
+      def nameVal  = (row[Columns.NAMES.NAME] ?: '').toString().trim()
+
+      log.info "[${f.name}] Row ${i+1}: flow=${flowName}, id=${idVal}, name=${nameVal}"
+
+      try {
+        // Make the entire row available as JSON if downstream cases need it
+        project.setPropertyValue('ROW_JSON', new JsonBuilder(props).toString())
+
+        // Run the flow and collect per-case results
+        def results = Orchestrator.runFlowByName(project, Flows.REGISTRY, flowName, props, true)
+        log.info "[${f.name}] Row ${i+1} results: ${results}"
+
+        // Build "1. Request AA - PASSED; 2. Approve AA - FAILED" style text
+def workflowSummary = results.withIndex().collect { r, idx ->
+  def ok = r.status?.equalsIgnoreCase('FINISHED')
+  def label = ok ? 'PASSED' : (r.status ?: 'UNKNOWN')
+  "${idx+1}. ${r.case} - ${label}"
+}.join('; ')
+
+// Write the workflow summary to the current data row (0-based index i)
+Lib.writeCellByHeader(path, null, 'Workflow', i, workflowSummary)
+
+        // Mark PASS only if every case finished
+        def pass = results &amp;&amp; results.every { it.status?.equalsIgnoreCase('FINISHED') }
+        Lib.writeCellByHeader(path, null, 'Result', i, pass ? 'PASS' : 'FAIL')
+        if (pass) passCnt++ else failCnt++
+      } catch (Throwable t) {
+        log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+        Lib.writeCellByHeader(path, null, 'Result', i, 'FAIL')
+        failCnt++
+      }
+    }
+  }
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// 4) Run every file
+files.each { runFile(it) }
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="USS API Driver Call External Project" id="a370235a-c3a9-4acc-90a8-74adf81c3f57"><con:settings/><con:config><script><![CDATA[// Driver: run one or more Excel files, each row picks a flow and runs its test cases.
+// - Loads Lib/Orchestrator/Columns/Flows via Boot (if not already loaded)
+// - Builds the data file list (from DATA_FILES or TS_01_DATA_FILE)
+// - For each file: read rows, pick flow (row "flow" or FLOW_DEFAULT), run, write Result/Workflow/JSON Response
+
+log.info "++++++++++ MULTI-FILE DRIVER ++++++++++\n"
+
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import com.eviware.soapui.impl.wsdl.teststeps.RestTestRequestStep
+import com.eviware.soapui.impl.wsdl.teststeps.WsdlTestRequestStep
+
+// ---------- Load library classes (Boot adds them to context if missing) ----------
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib']
+  Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']
+  Flows        = context['Flows']
+}
+
+// ---------- 1) Build the list of data files to run ----------
+def dataDir  = new File(context.expand('${projectDir}'), 'test-data')
+def listProp = context.testCase.getPropertyValue('DATA_FILES')    // comma-separated file names
+List<File> files = []
+if (listProp?.trim()) {
+  files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+} else {
+  def single = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')   // fallback to single file prop
+  files = [ new File(single) ]
+}
+files = files.findAll { it.exists() }
+if (files.isEmpty()) {
+  throw new FileNotFoundException("No data files found. Checked: DATA_FILES and TS_01_DATA_FILE under ${dataDir.absolutePath}")
+}
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+// ---------- 2) Default flow if row doesn't specify one ----------
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// ---------- Helpers for pretty-print and response extraction ----------
+def tryPretty = { String raw ->
+  if (!raw) return ''
+  try { return JsonOutput.prettyPrint(raw) } catch (ignore) { return raw }
+}
+def lastResponse = { tc ->
+  for (def step : tc.getTestStepList().reverse()) {
+    try {
+      if (step instanceof RestTestRequestStep || step instanceof WsdlTestRequestStep) {
+        def resp = step.getTestRequest()?.getResponse()?.getContentAsString()
+        if (resp) return resp
+      }
+    } catch (ignore) {}
+  }
+  return ''
+}
+
+// ---------- 3) Per-file execution (sequential to avoid xlsx write conflicts) ----------
+def runFile = { File f ->
+  final String path = f.absolutePath
+  final List<Map> rows = Lib.readXlsx(path)
+  log.info "\n=========[${f.name}] Rows read = ${rows.size()}=========\n"
+
+  def project   = context.testCase.testSuite.project
+  def workspace = project.workspace
+
+  // cache so tokenCase runs ONCE per (project,suite,token) per file
+  def tokenRan = new HashSet<String>()
+
+  int passCnt = 0, failCnt = 0, skipCnt = 0
+
+  rows.eachWithIndex { row, i ->
+    def currentResult = (row['Result'] ?: '').toString().trim()
+
+    // RUN only if the row is marked "DID NOT RUN" (or blank)
+    if (currentResult.equalsIgnoreCase('DID NOT RUN') || currentResult == '') {
+
+      // Build props from the entire row (headers -> values)
+      Map<String,String> props = [:]
+      row.each { k, v -> props[k] = (v ?: '').toString() }
+
+      // Flow name from the row or default
+      def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+      def defn = Flows.REGISTRY[flowName]
+      if (!defn) throw new IllegalArgumentException("Unknown flow in row ${i+1}: ${flowName}")
+
+      // Optional: ENV -> project mapping (uncomment to drive env by column)
+      // def env = (row['ENV'] ?: context.testCase.getPropertyValue('ENV') ?: 'INT').toString().trim().toUpperCase()
+      // def projectByEnv = ['INT':'INT ENV PROJECT','TEST':'TEST ENV PROJECT','ASSEMBLY':'ASSEMBLY ENV PROJECT']
+      // if (projectByEnv[env]) props['__TARGET_PROJECT__'] = projectByEnv[env]
+
+      // Resolve target for token logic
+      def tpName   = (props['__TARGET_PROJECT__'] ?: defn.project ?: project.name) as String
+      def suite    = (defn.suite as String)
+      def token    = (defn.tokenCase ?: defn.token ?: null) as String
+
+     log.info "[${f.name}] Row ${i+1}: flow=${flowName}, targetProject='${tpName}', suite='${suite}'"
+	// Build props first
+	//Map<String,String> props = [:]
+	row.each { k, v -> props[k] = (v ?: '').toString() }
+	// One-line, compact row dump
+	def kv = props.collect { k, v -> "${k}=${v.replace('\n','\\n')}" }.join('; ')
+	log.info "[${f.name}] Row ${i+1}: flow=${flowName}, targetProject='${tpName}', suite='${suite}' | RowData: ${kv}"
+
+      // ----- Token once per file per target (optional, only if tokenCase is defined) -----
+      if (token) {
+        def key = "${tpName}::${suite}::${token}"
+        if (!tokenRan.contains(key)) {
+          // run token once
+          def tp = workspace?.getProjectByName(tpName)
+          if (!tp) throw new IllegalArgumentException("Target project not open: ${tpName}")
+          Orchestrator.runCases(tp, suite, [token], props, true)
+          tokenRan.add(key)
+        }
+        // skip token inside the flow for all rows
+        props['__SKIP_TOKEN__'] = 'true'
+      }
+
+      try {
+        // Make the entire row available as JSON if downstream cases need it
+        project.setPropertyValue('ROW_JSON', new JsonBuilder(props).toString())
+
+        // ---- Run the flow (cross-project aware) ----
+//        def results = Orchestrator.runFlowByName(project, workspace, Flows.REGISTRY, flowName, props, true)
+        def results = Orchestrator.runFlowByName(project, workspace, Flows.REGISTRY, flowName, props, true, log)
+
+        log.info "[${f.name}] Row ${i+1} results: ${results}"
+
+        // ---- Workflow summary (each on its own line) ----
+        def workflowSummary = results.withIndex().collect { r, idx ->
+          def ok = r.status?.equalsIgnoreCase('FINISHED')
+          def label = ok ? 'PASSED' : (r.status ?: 'UNKNOWN')
+          "${idx+1}. ${r.case} - ${label}"
+        }.join('\n')
+        Lib.writeCellByHeader(path, null, 'Workflow', i, workflowSummary)
+
+        // ---- JSON Response blob (per executed case) ----
+        def tp = workspace ? (workspace.getProjectByName(tpName) ?: project) : project
+        def suiteObj = tp.getTestSuiteByName(suite)
+        def pieces = []
+        results.each { r ->
+          def tc = suiteObj?.getTestCaseByName(r.case)
+          def raw = tc ? lastResponse(tc) : ''
+          def pretty = tryPretty(raw)
+          int maxChars = 8000
+          if (pretty.length() > maxChars) pretty = pretty.substring(0, maxChars) + "\n...[truncated]"
+          pieces << "${r.case}:\n${pretty}"
+        }
+        def jsonBlob = pieces.join('\n\n')
+        Lib.writeCellByHeader(path, null, 'JSON Response', i, jsonBlob)
+
+        // ---- Overall PASS only if every case finished ----
+        def pass = results && results.every { it.status?.equalsIgnoreCase('FINISHED') }
+        Lib.writeCellByHeader(path, null, 'Result', i, pass ? 'PASS' : 'FAIL')
+        if (pass) passCnt++ else failCnt++
+
+      } catch (Throwable t) {
+        log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+        Lib.writeCellByHeader(path, null, 'Result', i, 'FAIL')
+        failCnt++
+      }
+
+    } else {
+      // Count skips so the file summary is accurate
+      skipCnt++
+    }
+  }
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// ---------- 4) Run every file ----------
+files.each { runFile(it) }
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+]]></script></con:config></con:testStep><con:setupScript>log.info "[TC-SETUP] SET UP " + testCase.name
+</con:setupScript>
+            <con:tearDownScript>log.info "[TC-SETUP] TEAR DOWN " + testCase.name</con:tearDownScript>
+            <con:properties><con:property><con:name>DATA_FILE</con:name><con:value>testdata.xlsx</con:value></con:property><con:property><con:name>TS_01_DATA_FILE</con:name><con:value>soapui_rest.xlsx</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>DATA_FILES</con:name><con:value/></con:property></con:properties>
+        </con:testCase>
+        <con:properties>
+            <con:property>
+                <con:name>DATA_FILE </con:name>
+                <con:value>sample.csv</con:value>
+            </con:property>
+        </con:properties>
+        <con:setupScript>log.info "[SUITE-SETUP]888888 " + testSuite.name
+//// TestSuite Setup Script
+//evaluate(new File(context.expand('${#Project#LIB_DIR}') + '/Boot.groovy'))
+//def Lib = context['Lib']
+//log.info "Lib " + Lib
+//def path = Lib.dataFile(context)
+//def data = Lib.readXlsx(path)
+//context.testSuite.setPropertyValue('ROW_COUNT', data.size().toString())
+//context.testSuite.setPropertyValue('ROW_INDEX', '0')
+//context.testSuite['EXCEL_DATA'] = data  // store in memory
+//evaluate(new File(context.expand('${#Project#LIB_DIR}') + '/Boot.groovy')) </con:setupScript>
+        <con:tearDownScript>log.info "[SUITE-SETUP] TEAR DOWN " + testSuite.name</con:tearDownScript>
+    </con:testSuite>
+    <con:testSuite id="b2164f51-f90f-4411-9577-6d63a5ebf73a" name="USS APIs"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f0eeced6-af47-4359-a78c-c4963032963d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Request AA" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="Get List - Get Single" id="abf25466-2c00-46a8-a486-8669bdc106c5"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts" methodName="Get List" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Get List - Get Single" id="bc140bac-6cac-4bec-b9b1-891c3d38ec11" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="7d87e564-422b-49c0-8941-5ee638e1a18a"><con:settings/><con:config><script>log.info "groovy INT TEST REQUEST START\n\n"
+def id   = context.testCase.getPropertyValue("id")
+def name = context.testCase.getPropertyValue("name")
+
+log.info "groovy INT TEST CASE 1: id=${id}, name=${name}"
+log.info "groovy INT TEST CASE REQUEST END\n\n"
+</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Request" id="09306024-80c3-4baa-93c3-ae8f01a9c5fa"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" methodName="Get List" resourcePath="/posts" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Request" id="0a07cdc7-44c5-41e7-a09f-6565dc6c025a" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="4" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="POST create - Create post" id="3f81593d-87f6-488d-a540-ab4620724da6"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts" methodName="POST create" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="POST create - Create post" id="fd6bc833-adc6-4b8e-91b1-11d8a4db6011" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{"title":"Created from SoapUI","body":"jhho","userId":1}</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_DENY</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>alt</con:name><con:value/></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Deny AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property></con:properties></con:testCase><con:testCase id="313e0a60-ec4b-4093-a915-d72b83f36d8a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Approve AA" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="bfdc3076-9e69-4344-8f08-0df0f34aac92"><con:settings/><con:config><script>log.info "groovy INT TEST CASE APPROVE START\n\n"
+def id   = context.testCase.getPropertyValue("id")
+def name = context.testCase.getPropertyValue("name")
+
+log.info "groovy INT TEST CASE 2: id=${id}, name=${name}"
+log.info "groovy INT TEST CASE APPROVE END\n\n"
+</script></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value>5.88</con:value></con:property><con:property><con:name>name</con:name><con:value>dsfasfd</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_APPROVE</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>5.2</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>4</con:value></con:property><con:property><con:name>alt</con:name><con:value/></con:property><con:property><con:name>Facility</con:name><con:value>SDGF</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Approve AA - PASSED</con:value></con:property></con:properties></con:testCase><con:testCase id="fdd92c4f-eaa3-4186-965d-b3b8147f6a1d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Deny AA" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="f4c2d5e1-8983-442f-8daa-1a22ba317a9a"><con:settings/><con:config><script>log.info "groovy INT TEST CASE DENY START\n\n"
+def id   = context.testCase.getPropertyValue("id")
+def name = context.testCase.getPropertyValue("name")
+
+log.info "groovy INT TEST CASE 2: id=${id}, name=${name}"
+log.info "groovy INT TEST CASE DENY END\n\n"
+</script></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_DENY</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Deny AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property></con:properties></con:testCase><con:testCase id="20dc4d3a-4a27-4449-983e-2e74952a437c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="FA REQUEST AA" searchProperties="true"><con:settings/><con:properties/></con:testCase><con:testCase id="273fcb8f-a2f9-4f6e-9deb-d4a8f7854ee9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Part 107 - Create Auto Authorization" searchProperties="true"><con:settings/><con:testStep type="groovy" name="operationId" id="a2f30c7d-be43-4e96-9715-e60368f7950a"><con:settings/><con:config><script>import java.lang.String
+
+
+//operationId
+def operationId = "";
+//Generate 'unique' enough id
+def chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Random random = new Random()
+
+//*** Generate the operation Id for the create operation API ***//
+9.times({operationId += chars[random.nextInt(Math.abs(chars.length() - 1))]})
+println(operationId)
+testRunner.testCase.testSuite.setPropertyValue("operationId", operationId)
+testRunner.testCase.setPropertyValue("operationId", operationId)
+
+log.info(operationId)</script></con:config></con:testStep><con:testStep type="groovy" name="startDateTime" id="85dc7f75-b273-49cc-bfa2-132d7611fe00"><con:settings/><con:config><script>import java.lang.String
+import java.lang.Boolean
+import java.time.LocalDate
+import java.time.format.*
+import java.time.Instant.*
+import java.time.*
+import java.time.temporal.*
+import java.time.format.DateTimeFormatter
+
+boolean closeOp = false
+def operationStartDateTime = ''
+
+if (closeOp == true) {
+	//Create operation Start Time
+	Instant instant = Instant.now().truncatedTo(ChronoUnit.SECONDS);
+	Instant startDateTime = instant.plusSeconds(60);
+	operationStartDateTime = startDateTime.toString()
+	log.info(operationStartDateTime)
+} else {
+	//Create operation Start Time
+	operationStartDateTime = new Date() + 3;
+	def operationStartDate = operationStartDateTime.format('yyyy-MM-dd');
+	def operationStartTime = operationStartDateTime.format('hh:mm:ss');
+	operationStartDateTime = (operationStartDate + "T" + operationStartTime + "Z")
+	log.info(operationStartDateTime)
+}
+
+testRunner.testCase.setPropertyValue("operationStartDateTime", operationStartDateTime)</script></con:config></con:testStep><con:testStep type="restrequest" name="Create Part 107 AA" id="a5513341-c1a7-4235-80bc-a6439665b33e" disabled="true"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Create Part 107 AA" id="7b20f7a3-46a1-487f-bd3a-5a9ffa8cf551" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#url}</con:endpoint><con:request>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ ${#TestCase#lon}, ${#TestCase#lat} ]
+      },
+      "properties": {
+        "airspaceClassCodes": [ "${#TestCase#airspaceClassCodes}" ],
+        "facility": "${#TestCase#facility}",
+        "operationID": "${#TestSuite#operationId}",
+        "operationDuration": "30",
+        "operationMaxAltitude": ${#TestCase#alt},
+        "operationRadius": ${#TestCase#radius},
+        "operationStartDateTime": "${#TestCase#operationStartDateTime}",
+        "pocFirstName": "${#TestCase#name}",
+        "pocLastName": "last-name",
+        "pocPhoneNumber": "1234567890",
+        "registrationNumbers": null,
+        "workReadyBypass": true,
+        "testSupport": true,
+        "ignoreFacilityMaps": true,
+        "facilityMaps": [
+          { "globalId": "00112233-4455-6677-8899-aabbccddeeff", "lastEditDate": "2017-04-27" },
+          { "globalId": "123e4567-e89b-12d3-a456-426655440000", "lastEditDate": "2017-04-27" }
+        ]
+      }
+    }
+  ]
+}</con:request><con:originalUri>https://work-uss.csra-dronezone.com/work/api/ext/v6/107/autoauthorization</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="9c44e630-f8fb-4f52-8ea3-a44207d36e23" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="160229de-d36e-4a1a-86d0-94d84606911b" name="Response SLA"><con:configuration><SLA>5000</SLA></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="cfae51e9-8008-4de6-b16a-cf82b10fcd1a" name="referenceNumber"><con:configuration><path>$.referenceNumber</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="62a654f6-fbe1-4c65-8be3-5df797eed5ef" name="statusDateTime"><con:configuration><path>$.statusDateTime</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Authorization" value="Bearer ${#Project#accessToken}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Bind Row -> TC Props" id="b04fc7a8-0e45-4f95-9aed-00b71b3ede9e" disabled="true"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+def raw = context.expand('${#Project#ROW_JSON}')
+assert raw, 'ROW_JSON is empty; did the driver set it?'
+
+def row = new JsonSlurper().parseText(raw)
+
+// choose which keys you want to use in this test case
+def keys = [
+  'operationId', 'operationStartDateTime',
+  'id', 'name', 'alt', 'radius',
+  'facility', 'airspaceClassCodes'
+]
+
+// copy onto both the TestCase and the TestSuite (so you can use either ${#TestCase#...} or ${#TestSuite#...})
+keys.each { k ->
+  def v = (row[k] ?: '').toString()
+  testRunner.testCase.setPropertyValue(k, v)
+  testRunner.testCase.testSuite.setPropertyValue(k, v)
+  // optional: also at project level
+  // testRunner.testCase.testSuite.project.setPropertyValue(k, v)
+}
+
+log.info "Bound row to Part 107 properties: ${keys.collect{ k -> "$k=${row[k]}" }.join(', ')}"
+</script></con:config></con:testStep><con:testStep type="groovy" name="debug" id="ce116fad-1b99-4aa1-b848-dec7550cecda"><con:settings/><con:config><script>// ------------------- DEBUG SCRIPT -------------------
+
+/**
+ * Goal:
+ * - Print out the values of some TestCase/TestSuite properties
+ * - Preview what the REST request body will look like *after* property expansion
+ */
+
+// 1) Define a list of property names we expect at the TestCase level.
+//    These usually come from your Excel driver (id, name, lat, etc.).
+def keys = ['id','name','lat','lon','alt','radius','facility','airspaceClassCodes','operationStartDateTime']
+
+// 2) Loop over each property name in 'keys' and log its current value
+//    Example output: "TC.id = 123", "TC.alt = 50"
+keys.each { k -> 
+    log.info "TC.${k} = " + context.testCase.getPropertyValue(k)
+}
+
+// 3) Separately log a property that lives at the TestSuite level (not TestCase).
+//    Here we expect the TestSuite to have "operationId" set.
+log.info "TS.operationId = " + context.testCase.testSuite.getPropertyValue('operationId')
+
+// 4) Grab the REST request step by name from this TestCase.
+//    - If the step does not exist or is disabled, restStep may be null.
+def restStep = context.testCase.getTestStepByName('Create Part 107 AA')
+
+// 5) Get the raw request body string from that step (its "Request" property).
+//    - If it's null, default to an empty string ('') so we don't get a NullPointerException.
+def expanded = context.expand(restStep.getPropertyValue('Request') ?: '')
+
+// 6) Expand any property placeholders inside the request body.
+//    Example: ${#TestCase#alt} → replaced with the actual alt property value.
+//    This is the same expansion SoapUI does before sending a request.
+log.info '\nExpanded JSON body:\n' + expanded
+
+// ------------------- END DEBUG SCRIPT -------------------
+
+</script></con:config></con:testStep><con:properties><con:property><con:name>operationId</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">YEJU7OIM2</con:value></con:property><con:property><con:name>operationStartDateTime</con:name><con:value>2025-10-04T01:39:53Z</con:value></con:property><con:property><con:name>accessToken</con:name><con:value>Bearer eyJraWQiOiI3c3FNZVFUM2FENE55LTZyUVBWRE92d0x2cWNRM29RUXYtNjFyVjdZOTd3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm1Oc08yZDAzZUhzYWlGZzlhTVZtSE5ua1RTTVJrR0hJbzJMYVFzd0lLeFUub2FydWd0dTFld2ZaU250S2wxZDYiLCJpc3MiOiJodHRwczovL2ZhYS11YXNjYXMtczEub2t0YXByZXZpZXcuY29tL29hdXRoMi9hdXMycGEzbjNuZWdtZFVFWTFkNyIsImF1ZCI6ImxhYW5jLmRldi52Ni5mYWEudXNzX2FwaUBjYXMuZmFhLmdvdiIsImlhdCI6MTY5MTA4NDEyNywiZXhwIjoxNjkxMDg3NzI3LCJjaWQiOiIwb2EycGExanNlU05zcHlsdjFkNyIsInVpZCI6IjAwdTJwam5zamZ0ZTRQMFF4MWQ3Iiwic2NwIjpbIm9mZmxpbmVfYWNjZXNzIiwibGFhbmMuaW5zdHJ1bWVudGF0aW9uIiwibGFhbmMucmV0cmlldmUuc3RhdHVzIiwibGFhbmMudXBkYXRlLmF1dGgtc3RhdHVzIiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtMTA3IiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtNDQ4MDkiLCJsYWFuYy5yZXF1ZXN0LmZ1cnRoZXItY29vcmQtYXV0aC0xMDciLCJsYWFuYy50ZXN0Lm9uYm9hcmRpbmciXSwiYXV0aF90aW1lIjoxNjkxMDg0MTI3LCJzdWIiOiJoZ29vZGhhcnQuZmFhQGdtYWlsLmNvbSIsImF1ZHgiOiJmYWFfbGFhbmNfZGV2X3Y2X2FwaUBjYXMuZmFhLmdvdiJ9.YVsL7dkkS215P93ECW_lWAYrygRiUbwqZjLa-0e9Vp5ulOPES0y39FTO2DvpzxZUCqSz_NfW2SuQIJWMp4nj4TBEjT7lxxdshTh4AWxVNKBnvsCay_6tnddF1WFUdvsEoh0dbDkup2SsAEb4ITCuunxYJt_3r4lygAiF1PiIIijtt_oNuxCbHKSSuc5RDdX7GlixCdrauIb04P1aD6xbPJCPXvXa5wvl6q-9mCHS0ICkY1IzkUnOV3hN3Ho67Je6RapkZBMLtsOS-wvfo1Kyjhk96rXSsLUy3L6ZpXDGrcqr0OmbclFDmpwPtBZQkVY0YvqYfHM8TnCp_Qbx6kKQRg</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_DENY</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>lat</con:name><con:value/></con:property><con:property><con:name>lon</con:name><con:value/></con:property><con:property><con:name>alt</con:name><con:value>5</con:value></con:property><con:property><con:name>radius</con:name><con:value>9</con:value></con:property><con:property><con:name>facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>airspaceClassCodes</con:name><con:value/></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Deny AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>operationId</con:name><con:value>YEJU7OIM2</con:value></con:property><con:property><con:name>operationStartDateTime</con:name><con:value/></con:property><con:property><con:name>lat</con:name><con:value/></con:property><con:property><con:name>lon</con:name><con:value/></con:property><con:property><con:name>alt</con:name><con:value/></con:property><con:property><con:name>radius</con:name><con:value>9</con:value></con:property><con:property><con:name>facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>airspaceClassCodes</con:name><con:value/></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_DENY</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Deny AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property></con:properties></con:testSuite><con:properties>
+        <con:property>
+            <con:name>ENV </con:name>
+            <con:value>int</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_INT </con:name>
+            <con:value>https://int.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_TEST </con:name>
+            <con:value>https://test.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_ASSEMBLY </con:name>
+            <con:value>https://asm.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_DIR</con:name>
+            <con:value>C:/Users/safiu/projects/soapui-base</con:value>
+        </con:property>
+    <con:property><con:name>BASE_DIR_PROJ</con:name><con:value>C:/Users/safiu/projects/soapui-base</con:value></con:property><con:property><con:name>DATA_DIR</con:name><con:value>${projectDir}\test-data</con:value></con:property><con:property><con:name>LIB_DIR</con:name><con:value>${projectDir}\lib</con:value></con:property><con:property><con:name>ROW_JSON</con:name><con:value>{"name":"asdf asdfsafs","id":"1","flow":"REST_PROJECT_1","Result":"DID NOT RUN","Radius":"9","Max Alt":"5","Facility":"GAD","__SKIP_TOKEN__":"true"}</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_DENY</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>alt</con:name><con:value/></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED; 2. Deny AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property></con:properties>
+    <con:afterLoadScript>import com.eviware.soapui.SoapUI
+def baseDir = project.getPropertyValue("BASE_DIR")
+if (baseDir == null) {
+    log.error("SOAPUI_BASE global property not set")
+} else {
+	com.eviware.soapui.SoapUI.log("LOAD baseDir " + baseDir)
+	project.setPropertyValue('BASE_DIR_PROJ', baseDir) // save once for everyone to read
+	com.eviware.soapui.SoapUI.log("LOAD BASE_DIRBASE_DIR_PROJ " + baseDir)
+}
+
+    </con:afterLoadScript>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

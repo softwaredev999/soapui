@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="db095ad0-40b3-486b-91be-a027c4e4a9db" activeEnvironment="Default" name="My SoapUI Automation Project" resourceRoot="" soapui-version="5.8.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:properties/>
+    <con:testSuite id="my-test-suite-id" name="My Test Suite">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="my-test-case-id" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="My Test Case" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="groovy" name="My Groovy Test Step" id="7c2f6ede-4d4d-46f2-abf6-21cfadf26980">
+                <con:settings/>
+                <con:config>
+                    <script>
+                        // Your Groovy script here
+                        log.info("Hello, SoapUI!")
+                    </script>
+                </con:config>
+            </con:testStep>
+        <con:properties/></con:testCase>
+    <con:properties/></con:testSuite>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

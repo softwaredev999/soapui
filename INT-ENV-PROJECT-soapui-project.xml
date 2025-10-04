@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="d474fa75-a3bd-425d-ab8b-bf9958e171f7" activeEnvironment="Default" name="INT ENV PROJECT" resourceRoot="" soapui-version="5.8.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="b6da310b-0c0f-4357-8497-bf959b789df3" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://jsonplaceholder.typicode.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint></con:endpoints><con:resource name="Posts" path="/posts" id="1aa24bf5-3c6c-4367-9dcd-9eb754ba44ed"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:resource name="{id}" path="{id}" id="2fe1e85f-018b-453b-afc4-6f13686f3823"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>id</con:value><con:style>TEMPLATE</con:style><con:default>id</con:default></con:parameter></con:parameters><con:method name="Method 1" id="7f2a05ba-7cf0-4e21-835a-f95348bd8387" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ns="https://jsonplaceholder.typicode.com/posts/1">ns:Response</con:element></con:representation><con:request name="Request 1" id="85257f8a-7c92-4ae0-aff7-5191dbb54017" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="Post by Id" path="{id}" id="0719b994-6971-4259-bf23-4887c33a194a"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>id</con:value><con:style>TEMPLATE</con:style><con:default>id</con:default></con:parameter></con:parameters><con:method name="Method 1" id="89a5da9f-1fa6-48de-91cf-d3d5949d52db" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ns="https://jsonplaceholder.typicode.com/posts/1">ns:Response</con:element></con:representation><con:request name="Request 1" id="a14f115f-431b-4ebc-8a9e-bfc1d38df687" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{
+  "id": 1,
+  "title": "Updated from SoapUI",
+  "body": "New body text",
+  "userId": 1
+}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:method name="Get List" id="14e568f3-0288-4a5e-bb2b-cb71c13aa75b" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Get Single" id="1dc3d77f-ed52-48d4-af6b-c933cbd9f777" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request><con:request name="Get All" id="f095036f-085c-4d67-a3a3-817082e6308c" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="POST create" id="c2b0cde6-9971-43f0-83ac-50fe3f5cd18e" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>201</con:status><con:params/><con:element xmlns:pos="https://jsonplaceholder.typicode.com/posts">pos:Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" id="73cfa9dd-9500-44ce-b7e7-93ce8d779950" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{"title":"Created from SoapUI","body":"Hello","userId":100}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request><con:request name="Create post" id="9f420c43-1645-4978-aaf2-979a540c6c27" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{"title":"Created from SoapUI","body":"jhho","userId":1}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="PUT" id="bfafa339-af75-44e3-a72b-11021613c588" method="PUT"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>404</con:status><con:params/><con:element>Fault</con:element></con:representation><con:request name="Request 1" id="7da20dec-f994-42b2-a33c-d26ebbcb6f63" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>{
+  "id": 1,
+  "title": "Updated from SoapUI",
+  "body": "New body text",
+  "userId": 1
+}
+</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="Delete" id="09e22929-921a-4c6b-8499-ffafa8d255d3" method="DELETE"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" id="f7a59699-6664-4e7d-8db5-7384674d1c63" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request>fetch('https://jsonplaceholder.typicode.com/posts/1', {
+  method: 'DELETE'
+})
+.then(response => {
+  if (response.ok) {
+    console.log('Resource deleted successfully');
+  } else {
+    console.log('Error deleting resource');
+  }
+})</con:request><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="posts two" path="/comments" id="63c4874e-df72-4448-81fa-bf7961f4c89b"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" id="4b09ed9c-323c-4065-84d3-d73a1dba7e7b" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" id="138f55f0-b518-48c1-a248-d0769cf65724" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint><con:request/><con:originalUri>https://jsonplaceholder.typicode.com/posts</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="31b1c91d-2cbf-4d84-98a9-f2312da5433d" name="USS APIs"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="0d394846-9a4b-4cfc-9a2d-3352376f6dde" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Get Token" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="19f37f6e-d322-4c98-8a4d-1d4deeb70f46"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT GET TOKEN"</script></con:config></con:testStep><con:properties><con:property><con:name>name</con:name><con:value>dsfasfd</con:value></con:property><con:property><con:name>id</con:name><con:value>5.88</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_APPROVE</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>5.2</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>4</con:value></con:property><con:property><con:name>Facility</con:name><con:value>SDGF</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Get Token - PASSED
+2. Request AA - PASSED
+3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Get Token:
+
+
+Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property></con:properties></con:testCase><con:testCase id="42be671c-5120-4740-b8d7-f1cd6fe82ea9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Request AA" searchProperties="true"><con:settings/><con:testStep type="groovy" name="OperationID" id="27273fed-0c26-4f80-b0cc-f81425a33492"><con:settings/><con:config><script/></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="7e4c1c4a-20a1-4951-81d7-7adbb28e799b"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT REQUEST AA"</script></con:config></con:testStep><con:properties><con:property><con:name>name</con:name><con:value>dsfasfd</con:value></con:property><con:property><con:name>id</con:name><con:value>5.88</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_APPROVE</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>5.2</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>4</con:value></con:property><con:property><con:name>Facility</con:name><con:value>SDGF</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Get Token - PASSED
+2. Request AA - PASSED
+3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Get Token:
+
+
+Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property></con:properties></con:testCase><con:testCase id="763ee172-271b-4044-a06c-b8371fd7215a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Part 107 - Create Auto Authorization" searchProperties="true"><con:settings/><con:testStep type="groovy" name="operationId" id="1e2a39bb-34cb-4345-9df3-d80fc2d4bcb3"><con:settings/><con:config><script>import java.lang.String
+
+
+//operationId
+def operationId = "";
+//Generate 'unique' enough id
+def chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Random random = new Random()
+
+//*** Generate the operation Id for the create operation API ***//
+9.times({operationId += chars[random.nextInt(Math.abs(chars.length() - 1))]})
+println(operationId)
+testRunner.testCase.testSuite.setPropertyValue("operationId", operationId)
+testRunner.testCase.setPropertyValue("operationId", operationId)
+
+log.info(operationId)</script></con:config></con:testStep><con:testStep type="groovy" name="startDateTime" id="bbdf209d-4410-416f-9d71-9f68ef16e23a"><con:settings/><con:config><script>import java.lang.String
+import java.lang.Boolean
+import java.time.LocalDate
+import java.time.format.*
+import java.time.Instant.*
+import java.time.*
+import java.time.temporal.*
+import java.time.format.DateTimeFormatter
+
+boolean closeOp = false
+def operationStartDateTime = ''
+
+if (closeOp == true) {
+	//Create operation Start Time
+	Instant instant = Instant.now().truncatedTo(ChronoUnit.SECONDS);
+	Instant startDateTime = instant.plusSeconds(60);
+	operationStartDateTime = startDateTime.toString()
+	log.info(operationStartDateTime)
+} else {
+	//Create operation Start Time
+	operationStartDateTime = new Date() + 3;
+	def operationStartDate = operationStartDateTime.format('yyyy-MM-dd');
+	def operationStartTime = operationStartDateTime.format('hh:mm:ss');
+	operationStartDateTime = (operationStartDate + "T" + operationStartTime + "Z")
+	log.info(operationStartDateTime)
+}
+
+testRunner.testCase.setPropertyValue("operationStartDateTime", operationStartDateTime)</script></con:config></con:testStep><con:testStep type="restrequest" name="Create Part 107 AA" id="a68f54f4-2a51-45b8-931d-e5b06551cbf7" disabled="true"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Create Part 107 AA" id="7b20f7a3-46a1-487f-bd3a-5a9ffa8cf551" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#url}</con:endpoint><con:request>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ ${#TestCase#lon}, ${#TestCase#lat} ]
+      },
+      "properties": {
+        "airspaceClassCodes": [ "${#TestCase#airspaceClassCodes}" ],
+        "facility": "${#TestCase#facility}",
+        "operationID": "${#TestSuite#operationId}",
+        "operationDuration": "30",
+        "operationMaxAltitude": ${#TestCase#alt},
+        "operationRadius": ${#TestCase#radius},
+        "operationStartDateTime": "${#TestCase#operationStartDateTime}",
+        "pocFirstName": "${#TestCase#name}",
+        "pocLastName": "last-name",
+        "pocPhoneNumber": "1234567890",
+        "registrationNumbers": null,
+        "workReadyBypass": true,
+        "testSupport": true,
+        "ignoreFacilityMaps": true,
+        "facilityMaps": [
+          { "globalId": "00112233-4455-6677-8899-aabbccddeeff", "lastEditDate": "2017-04-27" },
+          { "globalId": "123e4567-e89b-12d3-a456-426655440000", "lastEditDate": "2017-04-27" }
+        ]
+      }
+    }
+  ]
+}</con:request><con:originalUri>https://work-uss.csra-dronezone.com/work/api/ext/v6/107/autoauthorization</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="9c44e630-f8fb-4f52-8ea3-a44207d36e23" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="160229de-d36e-4a1a-86d0-94d84606911b" name="Response SLA"><con:configuration><SLA>5000</SLA></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="cfae51e9-8008-4de6-b16a-cf82b10fcd1a" name="referenceNumber"><con:configuration><path>$.referenceNumber</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="62a654f6-fbe1-4c65-8be3-5df797eed5ef" name="statusDateTime"><con:configuration><path>$.statusDateTime</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Authorization" value="Bearer ${#Project#accessToken}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Bind Row -> TC Props" id="89898fd6-a052-4ce3-8772-9f88598cc267" disabled="true"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+def raw = context.expand('${#Project#ROW_JSON}')
+assert raw, 'ROW_JSON is empty; did the driver set it?'
+
+def row = new JsonSlurper().parseText(raw)
+
+// choose which keys you want to use in this test case
+def keys = [
+  'operationId', 'operationStartDateTime',
+  'id', 'name', 'alt', 'radius',
+  'facility', 'airspaceClassCodes'
+]
+
+// copy onto both the TestCase and the TestSuite (so you can use either ${#TestCase#...} or ${#TestSuite#...})
+keys.each { k ->
+  def v = (row[k] ?: '').toString()
+  testRunner.testCase.setPropertyValue(k, v)
+  testRunner.testCase.testSuite.setPropertyValue(k, v)
+  // optional: also at project level
+  // testRunner.testCase.testSuite.project.setPropertyValue(k, v)
+}
+
+log.info "Bound row to Part 107 properties: ${keys.collect{ k -> "$k=${row[k]}" }.join(', ')}"
+</script></con:config></con:testStep><con:testStep type="groovy" name="debug" id="920d2810-f58d-4554-965c-3c09db07a18d"><con:settings/><con:config><script>// ------------------- DEBUG SCRIPT -------------------
+
+/**
+ * Goal:
+ * - Print out the values of some TestCase/TestSuite properties
+ * - Preview what the REST request body will look like *after* property expansion
+ */
+
+// 1) Define a list of property names we expect at the TestCase level.
+//    These usually come from your Excel driver (id, name, lat, etc.).
+def keys = ['id','name','lat','lon','alt','radius','facility','airspaceClassCodes','operationStartDateTime']
+
+// 2) Loop over each property name in 'keys' and log its current value
+//    Example output: "TC.id = 123", "TC.alt = 50"
+keys.each { k -> 
+    log.info "TC.${k} = " + context.testCase.getPropertyValue(k)
+}
+
+// 3) Separately log a property that lives at the TestSuite level (not TestCase).
+//    Here we expect the TestSuite to have "operationId" set.
+log.info "TS.operationId = " + context.testCase.testSuite.getPropertyValue('operationId')
+
+// 4) Grab the REST request step by name from this TestCase.
+//    - If the step does not exist or is disabled, restStep may be null.
+def restStep = context.testCase.getTestStepByName('Create Part 107 AA')
+
+// 5) Get the raw request body string from that step (its "Request" property).
+//    - If it's null, default to an empty string ('') so we don't get a NullPointerException.
+def expanded = context.expand(restStep.getPropertyValue('Request') ?: '')
+
+// 6) Expand any property placeholders inside the request body.
+//    Example: ${#TestCase#alt} → replaced with the actual alt property value.
+//    This is the same expansion SoapUI does before sending a request.
+log.info '\nExpanded JSON body:\n' + expanded
+
+// ------------------- END DEBUG SCRIPT -------------------
+
+</script></con:config></con:testStep><con:properties><con:property><con:name>operationId</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">1M81EEDKY</con:value></con:property><con:property><con:name>operationStartDateTime</con:name><con:value>2025-10-05T05:21:54Z</con:value></con:property><con:property><con:name>accessToken</con:name><con:value>Bearer eyJraWQiOiI3c3FNZVFUM2FENE55LTZyUVBWRE92d0x2cWNRM29RUXYtNjFyVjdZOTd3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm1Oc08yZDAzZUhzYWlGZzlhTVZtSE5ua1RTTVJrR0hJbzJMYVFzd0lLeFUub2FydWd0dTFld2ZaU250S2wxZDYiLCJpc3MiOiJodHRwczovL2ZhYS11YXNjYXMtczEub2t0YXByZXZpZXcuY29tL29hdXRoMi9hdXMycGEzbjNuZWdtZFVFWTFkNyIsImF1ZCI6ImxhYW5jLmRldi52Ni5mYWEudXNzX2FwaUBjYXMuZmFhLmdvdiIsImlhdCI6MTY5MTA4NDEyNywiZXhwIjoxNjkxMDg3NzI3LCJjaWQiOiIwb2EycGExanNlU05zcHlsdjFkNyIsInVpZCI6IjAwdTJwam5zamZ0ZTRQMFF4MWQ3Iiwic2NwIjpbIm9mZmxpbmVfYWNjZXNzIiwibGFhbmMuaW5zdHJ1bWVudGF0aW9uIiwibGFhbmMucmV0cmlldmUuc3RhdHVzIiwibGFhbmMudXBkYXRlLmF1dGgtc3RhdHVzIiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtMTA3IiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtNDQ4MDkiLCJsYWFuYy5yZXF1ZXN0LmZ1cnRoZXItY29vcmQtYXV0aC0xMDciLCJsYWFuYy50ZXN0Lm9uYm9hcmRpbmciXSwiYXV0aF90aW1lIjoxNjkxMDg0MTI3LCJzdWIiOiJoZ29vZGhhcnQuZmFhQGdtYWlsLmNvbSIsImF1ZHgiOiJmYWFfbGFhbmNfZGV2X3Y2X2FwaUBjYXMuZmFhLmdvdiJ9.YVsL7dkkS215P93ECW_lWAYrygRiUbwqZjLa-0e9Vp5ulOPES0y39FTO2DvpzxZUCqSz_NfW2SuQIJWMp4nj4TBEjT7lxxdshTh4AWxVNKBnvsCay_6tnddF1WFUdvsEoh0dbDkup2SsAEb4ITCuunxYJt_3r4lygAiF1PiIIijtt_oNuxCbHKSSuc5RDdX7GlixCdrauIb04P1aD6xbPJCPXvXa5wvl6q-9mCHS0ICkY1IzkUnOV3hN3Ho67Je6RapkZBMLtsOS-wvfo1Kyjhk96rXSsLUy3L6ZpXDGrcqr0OmbclFDmpwPtBZQkVY0YvqYfHM8TnCp_Qbx6kKQRg</con:value></con:property><con:property><con:name>name</con:name><con:value>dsfasfd</con:value></con:property><con:property><con:name>id</con:name><con:value>5.88</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_APPROVE</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>lat</con:name><con:value/></con:property><con:property><con:name>lon</con:name><con:value/></con:property><con:property><con:name>alt</con:name><con:value>5</con:value></con:property><con:property><con:name>radius</con:name><con:value>5.2</con:value></con:property><con:property><con:name>facility</con:name><con:value>SDGF</con:value></con:property><con:property><con:name>airspaceClassCodes</con:name><con:value/></con:property><con:property><con:name>Max Alt</con:name><con:value>4</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Get Token - PASSED
+2. Request AA - PASSED
+3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Get Token:
+
+
+Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>name</con:name><con:value>dsfasfd</con:value></con:property><con:property><con:name>id</con:name><con:value>5.88</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_REQUEST_APPROVE</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>Radius</con:name><con:value>5.2</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>4</con:value></con:property><con:property><con:name>Facility</con:name><con:value>SDGF</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Get Token - PASSED
+2. Request AA - PASSED
+3. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Get Token:
+
+
+Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property><con:property><con:name>operationId</con:name><con:value>1M81EEDKY</con:value></con:property></con:properties></con:testSuite><con:testSuite id="2c955120-87ea-4990-929e-a850d367bc3f" name="Errors"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="10b2c0d2-23e4-4a5b-a3e2-d23781440247" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Get Token" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Groovy Script" id="d6f47266-bce0-4f7c-8fd1-fe9e6fc90191"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT GET TOKEN ERRORS"</script></con:config></con:testStep><con:properties><con:property><con:name>name</con:name><con:value>mike</con:value></con:property><con:property><con:name>id</con:name><con:value>444</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>DID NOT RUN</con:value></con:property><con:property><con:name>Radius</con:name><con:value>11</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Facility</con:name><con:value>faf</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED
+2. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property></con:properties></con:testCase><con:testCase id="01da5f39-743b-4b9b-b07d-2badf45b00fd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Request AA" searchProperties="true"><con:settings/><con:testStep type="groovy" name="OperationID" id="b0680dd2-1875-47f1-9ce4-22d1e1b656f1"><con:settings/><con:config><script/></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="bd93da6b-a6c7-4877-9e4e-68a15a5ef19e"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT REQUEST AA ERRR"</script></con:config></con:testStep><con:properties><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>DID NOT RUN</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED
+2. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property><con:property><con:name>__SKIP_TOKEN__</con:name><con:value>true</con:value></con:property></con:properties></con:testCase><con:testCase id="ae461a38-a7a5-4bb1-9e80-0b11e39ce5d2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Part 107 - Create Auto Authorization" searchProperties="true"><con:settings/><con:testStep type="groovy" name="operationId" id="469fbaf7-0fc3-4c4e-a2d3-80a988dac949"><con:settings/><con:config><script>import java.lang.String
+
+
+//operationId
+def operationId = "";
+//Generate 'unique' enough id
+def chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Random random = new Random()
+
+//*** Generate the operation Id for the create operation API ***//
+9.times({operationId += chars[random.nextInt(Math.abs(chars.length() - 1))]})
+println(operationId)
+testRunner.testCase.testSuite.setPropertyValue("operationId", operationId)
+testRunner.testCase.setPropertyValue("operationId", operationId)
+
+log.info(operationId)</script></con:config></con:testStep><con:testStep type="groovy" name="startDateTime" id="eb86f862-ecaf-4fda-895b-d64a2657c9ce"><con:settings/><con:config><script>import java.lang.String
+import java.lang.Boolean
+import java.time.LocalDate
+import java.time.format.*
+import java.time.Instant.*
+import java.time.*
+import java.time.temporal.*
+import java.time.format.DateTimeFormatter
+
+boolean closeOp = false
+def operationStartDateTime = ''
+
+if (closeOp == true) {
+	//Create operation Start Time
+	Instant instant = Instant.now().truncatedTo(ChronoUnit.SECONDS);
+	Instant startDateTime = instant.plusSeconds(60);
+	operationStartDateTime = startDateTime.toString()
+	log.info(operationStartDateTime)
+} else {
+	//Create operation Start Time
+	operationStartDateTime = new Date() + 3;
+	def operationStartDate = operationStartDateTime.format('yyyy-MM-dd');
+	def operationStartTime = operationStartDateTime.format('hh:mm:ss');
+	operationStartDateTime = (operationStartDate + "T" + operationStartTime + "Z")
+	log.info(operationStartDateTime)
+}
+
+testRunner.testCase.setPropertyValue("operationStartDateTime", operationStartDateTime)</script></con:config></con:testStep><con:testStep type="restrequest" name="Create Part 107 AA" id="74bbe0a2-078d-4624-94de-a11eedbe9d70" disabled="true"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Create Part 107 AA" id="7b20f7a3-46a1-487f-bd3a-5a9ffa8cf551" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#url}</con:endpoint><con:request>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ ${#TestCase#lon}, ${#TestCase#lat} ]
+      },
+      "properties": {
+        "airspaceClassCodes": [ "${#TestCase#airspaceClassCodes}" ],
+        "facility": "${#TestCase#facility}",
+        "operationID": "${#TestSuite#operationId}",
+        "operationDuration": "30",
+        "operationMaxAltitude": ${#TestCase#alt},
+        "operationRadius": ${#TestCase#radius},
+        "operationStartDateTime": "${#TestCase#operationStartDateTime}",
+        "pocFirstName": "${#TestCase#name}",
+        "pocLastName": "last-name",
+        "pocPhoneNumber": "1234567890",
+        "registrationNumbers": null,
+        "workReadyBypass": true,
+        "testSupport": true,
+        "ignoreFacilityMaps": true,
+        "facilityMaps": [
+          { "globalId": "00112233-4455-6677-8899-aabbccddeeff", "lastEditDate": "2017-04-27" },
+          { "globalId": "123e4567-e89b-12d3-a456-426655440000", "lastEditDate": "2017-04-27" }
+        ]
+      }
+    }
+  ]
+}</con:request><con:originalUri>https://work-uss.csra-dronezone.com/work/api/ext/v6/107/autoauthorization</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="9c44e630-f8fb-4f52-8ea3-a44207d36e23" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="160229de-d36e-4a1a-86d0-94d84606911b" name="Response SLA"><con:configuration><SLA>5000</SLA></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="cfae51e9-8008-4de6-b16a-cf82b10fcd1a" name="referenceNumber"><con:configuration><path>$.referenceNumber</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="62a654f6-fbe1-4c65-8be3-5df797eed5ef" name="statusDateTime"><con:configuration><path>$.statusDateTime</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Authorization" value="Bearer ${#Project#accessToken}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Bind Row -> TC Props" id="712045de-0e98-45de-a51b-366f7f62cb95" disabled="true"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+def raw = context.expand('${#Project#ROW_JSON}')
+assert raw, 'ROW_JSON is empty; did the driver set it?'
+
+def row = new JsonSlurper().parseText(raw)
+
+// choose which keys you want to use in this test case
+def keys = [
+  'operationId', 'operationStartDateTime',
+  'id', 'name', 'alt', 'radius',
+  'facility', 'airspaceClassCodes'
+]
+
+// copy onto both the TestCase and the TestSuite (so you can use either ${#TestCase#...} or ${#TestSuite#...})
+keys.each { k ->
+  def v = (row[k] ?: '').toString()
+  testRunner.testCase.setPropertyValue(k, v)
+  testRunner.testCase.testSuite.setPropertyValue(k, v)
+  // optional: also at project level
+  // testRunner.testCase.testSuite.project.setPropertyValue(k, v)
+}
+
+log.info "Bound row to Part 107 properties: ${keys.collect{ k -> "$k=${row[k]}" }.join(', ')}"
+</script></con:config></con:testStep><con:testStep type="groovy" name="debug" id="292da66e-2156-425b-9126-9e2f133c1678" disabled="true"><con:settings/><con:config><script>// ------------------- DEBUG SCRIPT -------------------
+
+/**
+ * Goal:
+ * - Print out the values of some TestCase/TestSuite properties
+ * - Preview what the REST request body will look like *after* property expansion
+ */
+
+// 1) Define a list of property names we expect at the TestCase level.
+//    These usually come from your Excel driver (id, name, lat, etc.).
+def keys = ['id','name','lat','lon','alt','radius','facility','airspaceClassCodes','operationStartDateTime']
+
+// 2) Loop over each property name in 'keys' and log its current value
+//    Example output: "TC.id = 123", "TC.alt = 50"
+keys.each { k -> 
+    log.info "TC.${k} = " + context.testCase.getPropertyValue(k)
+}
+
+// 3) Separately log a property that lives at the TestSuite level (not TestCase).
+//    Here we expect the TestSuite to have "operationId" set.
+log.info "TS.operationId = " + context.testCase.testSuite.getPropertyValue('operationId')
+
+// 4) Grab the REST request step by name from this TestCase.
+//    - If the step does not exist or is disabled, restStep may be null.
+def restStep = context.testCase.getTestStepByName('Create Part 107 AA')
+
+// 5) Get the raw request body string from that step (its "Request" property).
+//    - If it's null, default to an empty string ('') so we don't get a NullPointerException.
+def expanded = context.expand(restStep.getPropertyValue('Request') ?: '')
+
+// 6) Expand any property placeholders inside the request body.
+//    Example: ${#TestCase#alt} → replaced with the actual alt property value.
+//    This is the same expansion SoapUI does before sending a request.
+log.info '\nExpanded JSON body:\n' + expanded
+
+// ------------------- END DEBUG SCRIPT -------------------
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Copy of Groovy Script" id="7d3574bf-4595-4acf-93f4-56e4a0f769ba"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT REQUEST AA ERRR666"</script></con:config></con:testStep><con:properties><con:property><con:name>operationId</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">X4RGBTEX3</con:value></con:property><con:property><con:name>operationStartDateTime</con:name><con:value>2025-10-07T10:30:37Z</con:value></con:property><con:property><con:name>accessToken</con:name><con:value>Bearer eyJraWQiOiI3c3FNZVFUM2FENE55LTZyUVBWRE92d0x2cWNRM29RUXYtNjFyVjdZOTd3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm1Oc08yZDAzZUhzYWlGZzlhTVZtSE5ua1RTTVJrR0hJbzJMYVFzd0lLeFUub2FydWd0dTFld2ZaU250S2wxZDYiLCJpc3MiOiJodHRwczovL2ZhYS11YXNjYXMtczEub2t0YXByZXZpZXcuY29tL29hdXRoMi9hdXMycGEzbjNuZWdtZFVFWTFkNyIsImF1ZCI6ImxhYW5jLmRldi52Ni5mYWEudXNzX2FwaUBjYXMuZmFhLmdvdiIsImlhdCI6MTY5MTA4NDEyNywiZXhwIjoxNjkxMDg3NzI3LCJjaWQiOiIwb2EycGExanNlU05zcHlsdjFkNyIsInVpZCI6IjAwdTJwam5zamZ0ZTRQMFF4MWQ3Iiwic2NwIjpbIm9mZmxpbmVfYWNjZXNzIiwibGFhbmMuaW5zdHJ1bWVudGF0aW9uIiwibGFhbmMucmV0cmlldmUuc3RhdHVzIiwibGFhbmMudXBkYXRlLmF1dGgtc3RhdHVzIiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtMTA3IiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtNDQ4MDkiLCJsYWFuYy5yZXF1ZXN0LmZ1cnRoZXItY29vcmQtYXV0aC0xMDciLCJsYWFuYy50ZXN0Lm9uYm9hcmRpbmciXSwiYXV0aF90aW1lIjoxNjkxMDg0MTI3LCJzdWIiOiJoZ29vZGhhcnQuZmFhQGdtYWlsLmNvbSIsImF1ZHgiOiJmYWFfbGFhbmNfZGV2X3Y2X2FwaUBjYXMuZmFhLmdvdiJ9.YVsL7dkkS215P93ECW_lWAYrygRiUbwqZjLa-0e9Vp5ulOPES0y39FTO2DvpzxZUCqSz_NfW2SuQIJWMp4nj4TBEjT7lxxdshTh4AWxVNKBnvsCay_6tnddF1WFUdvsEoh0dbDkup2SsAEb4ITCuunxYJt_3r4lygAiF1PiIIijtt_oNuxCbHKSSuc5RDdX7GlixCdrauIb04P1aD6xbPJCPXvXa5wvl6q-9mCHS0ICkY1IzkUnOV3hN3Ho67Je6RapkZBMLtsOS-wvfo1Kyjhk96rXSsLUy3L6ZpXDGrcqr0OmbclFDmpwPtBZQkVY0YvqYfHM8TnCp_Qbx6kKQRg</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>DID NOT RUN</con:value></con:property><con:property><con:name>lat</con:name><con:value/></con:property><con:property><con:name>lon</con:name><con:value/></con:property><con:property><con:name>alt</con:name><con:value>5</con:value></con:property><con:property><con:name>radius</con:name><con:value>9</con:value></con:property><con:property><con:name>facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>airspaceClassCodes</con:name><con:value/></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED
+2. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property><con:property><con:name>__SKIP_TOKEN__</con:name><con:value>true</con:value></con:property></con:properties></con:testCase><con:testCase id="53c51848-c22f-4806-bfdc-532a7968e4ac" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Exclude Test Case" searchProperties="true"><con:settings/><con:testStep type="groovy" name="operationId" id="6782c86a-c56e-4b44-98de-fdfbde940fd2"><con:settings/><con:config><script>import java.lang.String
+
+
+//operationId
+def operationId = "";
+//Generate 'unique' enough id
+def chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Random random = new Random()
+
+//*** Generate the operation Id for the create operation API ***//
+9.times({operationId += chars[random.nextInt(Math.abs(chars.length() - 1))]})
+println(operationId)
+testRunner.testCase.testSuite.setPropertyValue("operationId", operationId)
+testRunner.testCase.setPropertyValue("operationId", operationId)
+
+log.info(operationId)</script></con:config></con:testStep><con:testStep type="groovy" name="startDateTime" id="6f503191-99d3-4c87-b8f9-914f9bf121ad"><con:settings/><con:config><script>import java.lang.String
+import java.lang.Boolean
+import java.time.LocalDate
+import java.time.format.*
+import java.time.Instant.*
+import java.time.*
+import java.time.temporal.*
+import java.time.format.DateTimeFormatter
+
+boolean closeOp = false
+def operationStartDateTime = ''
+
+if (closeOp == true) {
+	//Create operation Start Time
+	Instant instant = Instant.now().truncatedTo(ChronoUnit.SECONDS);
+	Instant startDateTime = instant.plusSeconds(60);
+	operationStartDateTime = startDateTime.toString()
+	log.info(operationStartDateTime)
+} else {
+	//Create operation Start Time
+	operationStartDateTime = new Date() + 3;
+	def operationStartDate = operationStartDateTime.format('yyyy-MM-dd');
+	def operationStartTime = operationStartDateTime.format('hh:mm:ss');
+	operationStartDateTime = (operationStartDate + "T" + operationStartTime + "Z")
+	log.info(operationStartDateTime)
+}
+
+testRunner.testCase.setPropertyValue("operationStartDateTime", operationStartDateTime)</script></con:config></con:testStep><con:testStep type="restrequest" name="Create Part 107 AA" id="611e3c2c-f96d-4183-a5c7-a6dcd2edd9a8" disabled="true"><con:settings/><con:config service="https://jsonplaceholder.typicode.com" resourcePath="/posts/{id}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Create Part 107 AA" id="7b20f7a3-46a1-487f-bd3a-5a9ffa8cf551" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#url}</con:endpoint><con:request>{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ ${#TestCase#lon}, ${#TestCase#lat} ]
+      },
+      "properties": {
+        "airspaceClassCodes": [ "${#TestCase#airspaceClassCodes}" ],
+        "facility": "${#TestCase#facility}",
+        "operationID": "${#TestSuite#operationId}",
+        "operationDuration": "30",
+        "operationMaxAltitude": ${#TestCase#alt},
+        "operationRadius": ${#TestCase#radius},
+        "operationStartDateTime": "${#TestCase#operationStartDateTime}",
+        "pocFirstName": "${#TestCase#name}",
+        "pocLastName": "last-name",
+        "pocPhoneNumber": "1234567890",
+        "registrationNumbers": null,
+        "workReadyBypass": true,
+        "testSupport": true,
+        "ignoreFacilityMaps": true,
+        "facilityMaps": [
+          { "globalId": "00112233-4455-6677-8899-aabbccddeeff", "lastEditDate": "2017-04-27" },
+          { "globalId": "123e4567-e89b-12d3-a456-426655440000", "lastEditDate": "2017-04-27" }
+        ]
+      }
+    }
+  ]
+}</con:request><con:originalUri>https://work-uss.csra-dronezone.com/work/api/ext/v6/107/autoauthorization</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="9c44e630-f8fb-4f52-8ea3-a44207d36e23" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="160229de-d36e-4a1a-86d0-94d84606911b" name="Response SLA"><con:configuration><SLA>5000</SLA></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="cfae51e9-8008-4de6-b16a-cf82b10fcd1a" name="referenceNumber"><con:configuration><path>$.referenceNumber</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="62a654f6-fbe1-4c65-8be3-5df797eed5ef" name="statusDateTime"><con:configuration><path>$.statusDateTime</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Authorization" value="Bearer ${#Project#accessToken}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Bind Row -> TC Props" id="4cf8ec80-6536-4ac2-ac39-6e86311377ae" disabled="true"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+def raw = context.expand('${#Project#ROW_JSON}')
+assert raw, 'ROW_JSON is empty; did the driver set it?'
+
+def row = new JsonSlurper().parseText(raw)
+
+// choose which keys you want to use in this test case
+def keys = [
+  'operationId', 'operationStartDateTime',
+  'id', 'name', 'alt', 'radius',
+  'facility', 'airspaceClassCodes'
+]
+
+// copy onto both the TestCase and the TestSuite (so you can use either ${#TestCase#...} or ${#TestSuite#...})
+keys.each { k ->
+  def v = (row[k] ?: '').toString()
+  testRunner.testCase.setPropertyValue(k, v)
+  testRunner.testCase.testSuite.setPropertyValue(k, v)
+  // optional: also at project level
+  // testRunner.testCase.testSuite.project.setPropertyValue(k, v)
+}
+
+log.info "Bound row to Part 107 properties: ${keys.collect{ k -> "$k=${row[k]}" }.join(', ')}"
+</script></con:config></con:testStep><con:testStep type="groovy" name="debug" id="566d03a9-cacd-4801-9f9d-8c17179b8fe9" disabled="true"><con:settings/><con:config><script>// ------------------- DEBUG SCRIPT -------------------
+
+/**
+ * Goal:
+ * - Print out the values of some TestCase/TestSuite properties
+ * - Preview what the REST request body will look like *after* property expansion
+ */
+
+// 1) Define a list of property names we expect at the TestCase level.
+//    These usually come from your Excel driver (id, name, lat, etc.).
+def keys = ['id','name','lat','lon','alt','radius','facility','airspaceClassCodes','operationStartDateTime']
+
+// 2) Loop over each property name in 'keys' and log its current value
+//    Example output: "TC.id = 123", "TC.alt = 50"
+keys.each { k -> 
+    log.info "TC.${k} = " + context.testCase.getPropertyValue(k)
+}
+
+// 3) Separately log a property that lives at the TestSuite level (not TestCase).
+//    Here we expect the TestSuite to have "operationId" set.
+log.info "TS.operationId = " + context.testCase.testSuite.getPropertyValue('operationId')
+
+// 4) Grab the REST request step by name from this TestCase.
+//    - If the step does not exist or is disabled, restStep may be null.
+def restStep = context.testCase.getTestStepByName('Create Part 107 AA')
+
+// 5) Get the raw request body string from that step (its "Request" property).
+//    - If it's null, default to an empty string ('') so we don't get a NullPointerException.
+def expanded = context.expand(restStep.getPropertyValue('Request') ?: '')
+
+// 6) Expand any property placeholders inside the request body.
+//    Example: ${#TestCase#alt} → replaced with the actual alt property value.
+//    This is the same expansion SoapUI does before sending a request.
+log.info '\nExpanded JSON body:\n' + expanded
+
+// ------------------- END DEBUG SCRIPT -------------------
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Copy of Groovy Script" id="e8fb9920-8b68-40a9-962b-5796d028478a"><con:settings/><con:config><script>log.info "!!!!!!!!!!!!!!!!!!!!!!!!groovy INT ERROR EXCLUDE"</script></con:config></con:testStep><con:properties><con:property><con:name>operationId</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">DR2B27CRI</con:value></con:property><con:property><con:name>operationStartDateTime</con:name><con:value>2025-10-04T09:02:21Z</con:value></con:property><con:property><con:name>accessToken</con:name><con:value>Bearer eyJraWQiOiI3c3FNZVFUM2FENE55LTZyUVBWRE92d0x2cWNRM29RUXYtNjFyVjdZOTd3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm1Oc08yZDAzZUhzYWlGZzlhTVZtSE5ua1RTTVJrR0hJbzJMYVFzd0lLeFUub2FydWd0dTFld2ZaU250S2wxZDYiLCJpc3MiOiJodHRwczovL2ZhYS11YXNjYXMtczEub2t0YXByZXZpZXcuY29tL29hdXRoMi9hdXMycGEzbjNuZWdtZFVFWTFkNyIsImF1ZCI6ImxhYW5jLmRldi52Ni5mYWEudXNzX2FwaUBjYXMuZmFhLmdvdiIsImlhdCI6MTY5MTA4NDEyNywiZXhwIjoxNjkxMDg3NzI3LCJjaWQiOiIwb2EycGExanNlU05zcHlsdjFkNyIsInVpZCI6IjAwdTJwam5zamZ0ZTRQMFF4MWQ3Iiwic2NwIjpbIm9mZmxpbmVfYWNjZXNzIiwibGFhbmMuaW5zdHJ1bWVudGF0aW9uIiwibGFhbmMucmV0cmlldmUuc3RhdHVzIiwibGFhbmMudXBkYXRlLmF1dGgtc3RhdHVzIiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtMTA3IiwibGFhbmMucmVxdWVzdC5hdXRvLWF1dGgtNDQ4MDkiLCJsYWFuYy5yZXF1ZXN0LmZ1cnRoZXItY29vcmQtYXV0aC0xMDciLCJsYWFuYy50ZXN0Lm9uYm9hcmRpbmciXSwiYXV0aF90aW1lIjoxNjkxMDg0MTI3LCJzdWIiOiJoZ29vZGhhcnQuZmFhQGdtYWlsLmNvbSIsImF1ZHgiOiJmYWFfbGFhbmNfZGV2X3Y2X2FwaUBjYXMuZmFhLmdvdiJ9.YVsL7dkkS215P93ECW_lWAYrygRiUbwqZjLa-0e9Vp5ulOPES0y39FTO2DvpzxZUCqSz_NfW2SuQIJWMp4nj4TBEjT7lxxdshTh4AWxVNKBnvsCay_6tnddF1WFUdvsEoh0dbDkup2SsAEb4ITCuunxYJt_3r4lygAiF1PiIIijtt_oNuxCbHKSSuc5RDdX7GlixCdrauIb04P1aD6xbPJCPXvXa5wvl6q-9mCHS0ICkY1IzkUnOV3hN3Ho67Je6RapkZBMLtsOS-wvfo1Kyjhk96rXSsLUy3L6ZpXDGrcqr0OmbclFDmpwPtBZQkVY0YvqYfHM8TnCp_Qbx6kKQRg</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>PASS</con:value></con:property><con:property><con:name>lat</con:name><con:value/></con:property><con:property><con:name>lon</con:name><con:value/></con:property><con:property><con:name>alt</con:name><con:value>5</con:value></con:property><con:property><con:name>radius</con:name><con:value>9</con:value></con:property><con:property><con:name>facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>airspaceClassCodes</con:name><con:value/></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Get Token - PASSED; 2. Request AA - PASSED; 3. Part 107 - Create Auto Authorization - PASSED; 4. Exclude Test Case - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Get Token:
+
+
+Request AA:
+
+
+Part 107 - Create Auto Authorization:
+
+
+Exclude Test Case:
+</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>DID NOT RUN</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED
+2. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>operationId</con:name><con:value>X4RGBTEX3</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property><con:property><con:name>__SKIP_TOKEN__</con:name><con:value>true</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>flow</con:name><con:value>FLOW_INT_PROJECT</con:value></con:property><con:property><con:name>Result</con:name><con:value>DID NOT RUN</con:value></con:property><con:property><con:name>Radius</con:name><con:value>9</con:value></con:property><con:property><con:name>Max Alt</con:name><con:value>5</con:value></con:property><con:property><con:name>Facility</con:name><con:value>GAD</con:value></con:property><con:property><con:name>Workflow</con:name><con:value>1. Request AA - PASSED
+2. Part 107 - Create Auto Authorization - PASSED</con:value></con:property><con:property><con:name>JSON Response</con:name><con:value>Request AA:
+
+
+Part 107 - Create Auto Authorization:
+</con:value></con:property><con:property><con:name>__SKIP_TOKEN__</con:name><con:value>true</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="491d33fb-a894-40af-be2e-2707943e41e0" activeEnvironment="Default"
+    name="Framework Sandbox" resourceRoot="" soapui-version="5.8.0" abortOnError="false"
+    runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings />
+    <con:testSuite id="1e5d4b84-b2d2-428f-b6c5-531d5bc2dca2" name="Sandbox Suite">
+        <con:settings />
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="b6beeb77-d0d9-4fd7-97cf-a82d03d4d0d4" failOnError="true"
+            failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="automation"
+            searchProperties="true">
+            <con:settings />
+            <con:testStep type="groovy" name="Driver - Demo"
+                id="468d81bb-eb30-4cec-8f50-268786a80deb">
+                <con:settings />
+                <con:config>
+                    <script>import com.eviware.soapui.SoapUI
+                        log.info "DRIVER TEST STEP "
+                        // get the Project object from the step's context
+                        def proj = context.testCase.testSuite.project
+
+                        // read BASE_DIR written by the Load Script (fallback to global if missing)
+                        def BASE = proj.getPropertyValue('BASE_DIR')
+                        assert BASE : "BASE_DIR/ SOAPUI_BASE not set"
+                        log.info "BASE " + BASE
+                        // compile (once per run) and cache the Lib class
+                        def LibClass = context['LibClass']
+                        if (!LibClass) {
+                        def gcl = new GroovyClassLoader(this.class.classLoader)
+                        LibClass = gcl.parseClass(new File("${BASE}/lib/Lib.groovy"))
+                        context['LibClass'] = LibClass
+                        }
+
+                        // use it
+                        LibClass.ping(this, "Driverhh")
+                        SoapUI.log("hello soapui log")
+                        def baseDir =
+                        testRunner.testCase.testSuite.project.getPropertyValue("BASE_DIR")
+                        log.info("BASE_DIR+++: " + baseDir)
+
+                        //import com.eviware.soapui.SoapUI
+                        ////
+                        //def LibClass = context['LibClass']
+                        //if (!LibClass) { // if you ran this step alone
+                        //// def BASE = SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+                        //// def BASE = context['BASE'] ?:
+                        SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+                        //def BASE = project.getPropertyValue('BASE_DIR')
+                        // def gcl = new GroovyClassLoader(this.class.classLoader)
+                        // LibClass = gcl.parseClass(new File("${BASE}/lib/Lib.groovy"))
+                        // context['LibClass'] = LibClass
+                        //}
+                        //
+                        //LibClass.ping(this, "Driverhh")
+                        //com.eviware.soapui.SoapUI.log("hello soapui log")
+                    </script>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="groovy" name="Driver - Demo - Two"
+                id="d3b7e9be-d070-412f-ae2c-58c225665c19">
+                <con:settings />
+                <con:config>
+                    <script>import com.eviware.soapui.SoapUI
+                        //
+                        def LibClass = context['LibClass']
+                        if (!LibClass) { // if you ran this step alone
+                        def BASE = SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+                        def gcl = new GroovyClassLoader(this.class.classLoader)
+                        LibClass = gcl.parseClass(new File("${BASE}/lib/Lib.groovy"))
+                        context['LibClass'] = LibClass
+                        }
+
+                        LibClass.ping(this, "Driver")
+</script>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="groovy" name="DriverApproveUpdate"
+                id="e97b4964-e8d4-4da2-ba0f-306a30f5b2ce">
+                <con:settings />
+                <con:config>
+                    <script>import org.apache.poi.ss.usermodel.*
+
+                        def filePath = "C:/Users/safiu/Downloads/soapui.xlsx"
+                        def fileInputStream = new FileInputStream(new File(filePath))
+                        def workbook = WorkbookFactory.create(fileInputStream)
+                        def sheet = workbook.getSheetAt(0) // Get the first sheet
+
+                        // Get headers
+                        def headers = []
+                        def headerRow = sheet.getRow(0)
+                        headerRow.each { cell ->
+                        headers &lt;&lt; getCellValue(cell)
+                        }
+
+                        // Iterate through rows
+                        def rowIndex = 0
+                        sheet.each { row ->
+                        if (rowIndex > 0) { // Skip header row
+                        def rowValues = [:]
+                        headers.eachWithIndex { header, index ->
+                        def cell = row.getCell(index)
+                        rowValues[header] = new DataFormatter().formatCellValue(cell)
+
+                        // rowValues[header] = getCellValue(cell)
+                        }
+                        log.info "Row $rowIndex Values: $rowValues"
+                        log.info rowValues["name"].toString()
+                        log.info rowValues["id"].toString()
+                        // Use rowValues to make API call
+                        // For example:
+                        // def apiResponse = apiCall(rowValues)
+                        }
+                        rowIndex++
+                        }
+
+                        // Helper method to get cell value
+                        def getCellValue(Cell cell) {
+                        if (cell == null) return ""
+                        switch (cell.cellType) {
+                        case CellType.STRING:
+                        return cell.stringCellValue
+                        case CellType.NUMERIC:
+                        return cell.numericCellValue
+                        case CellType.BOOLEAN:
+                        return cell.booleanCellValue
+                        default:
+                        return ""
+                        }
+                        }
+
+                        // Close the workbook and input stream
+                        workbook.close()
+                        fileInputStream.close()</script>
+                </con:config>
+            </con:testStep>
+            <con:setupScript>log.info "[TC-SETUP] SET UP " + testCase.name
+</con:setupScript>
+            <con:tearDownScript>log.info "[TC-SETUP] TEAR DOWN " + testCase.name</con:tearDownScript>
+            <con:properties />
+        </con:testCase>
+        <con:properties>
+            <con:property>
+                <con:name>DATA_FILE </con:name>
+                <con:value>sample.csv</con:value>
+            </con:property>
+        </con:properties>
+        <con:setupScript>log.info "[SUITE-SETUP] " + testSuite.name
+</con:setupScript>
+        <con:tearDownScript>log.info "[SUITE-SETUP] TEAR DOWN " + testSuite.name</con:tearDownScript>
+    </con:testSuite>
+    <con:properties>
+        <con:property>
+            <con:name>ENV </con:name>
+            <con:value>int</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_INT </con:name>
+            <con:value>https://int.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_TEST </con:name>
+            <con:value>https://test.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_URL_ASSEMBLY </con:name>
+            <con:value>https://asm.example.com</con:value>
+        </con:property>
+        <con:property>
+            <con:name>BASE_DIR</con:name>
+            <con:value>C:/Users/safiu/projects/soapui-base</con:value>
+        </con:property>
+    </con:properties>
+    <con:afterLoadScript>import com.eviware.soapui.SoapUI
+
+        def base = SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+        assert base : "Set SOAPUI_BASE in Global Properties"
+
+        project.setPropertyValue('BASE_DIR', base) // save once for everyone to read
+        SoapUI.log("[PROJECT-LOAD] BASE_DIR=" + project.getPropertyValue('BASE_DIR'))
+
+        def baseDir = testRunner.testCase.testSuite.project.getPropertyValue("BASE_DIR")
+        com.eviware.soapui.SoapUI.log("LOAD baseDir " + baseDir)
+
+        //import com.eviware.soapui.SoapUI
+        //context['BASE']= SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+        ////def BASE = SoapUI.globalProperties.getPropertyValue('SOAPUI_BASE')
+        //def libFile = new File("${BASE}/lib/Lib.groovy")
+        //
+        //def gcl = new GroovyClassLoader(this.class.classLoader)
+        //def LibClass = gcl.parseClass(libFile) // compile class file; don’t evaluate()
+        //context['LibClass'] = LibClass
+        //
+        //SoapUI.log("[PROJECT-LOAD] Lib compiled")
+        //// Project Load / Suite Setup
+        //com.eviware.soapui.SoapUI.log("[PROJECT] Lib compiled")
+        //com.eviware.soapui.SoapUI.log("[SUITE] ENV=INT BASE_URL=https://int.example.com")
+
+
+    </con:afterLoadScript>
+    <con:wssContainer />
+    <con:oAuth2ProfileContainer />
+    <con:oAuth1ProfileContainer />
+    <con:sensitiveInformation />
+</con:soapui-project>
