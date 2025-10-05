@@ -1,161 +1,157 @@
-# USS_Automation_Framework
+# USS_Automation_Framework (Workspace-Aware)
 
-## 📘 Overview
-`USS_Automation_Framework` is a central SoapUI automation project designed to orchestrate multiple SoapUI projects using a Flow Registry and Excel-based test data. It handles Request → Approve → Cancel workflows, logging Pass/Fail results automatically.
+> Updated 2025-10-04 18:51
 
----
-
-## 🧱 1. Installation Steps
-
-1. **Install SoapUI (Recommended 5.7.0+)**
-   - Download: https://www.soapui.org/downloads/soapui
-   - Follow installation wizard and verify Groovy scripting.
-
-2. **Verify Groovy**
-   ```groovy
-   log.info "Groovy works fine!"
-   ```
-
-3. **Create Workspace**
-   ```
-   C:\SoapUI_Automation\USS_Automation_Framework\
-   ```
-
-4. **Place Files**
-   Copy `lib/` and `test-data/` folders into project directory.
+This setup assumes your **SoapUI workspace** has a top-level `lib/` and `test-data/` folder used by **all** projects, plus a folder for the automation project itself (`USS_Automation_Framework/`). Other SoapUI projects live alongside it in the workspace and are invoked via the **Flow Registry**.
 
 ---
 
-## 📂 2. Folder Structure
+## Workspace Layout
 
 ```
-USS_Automation_Framework/
-├── USS_Automation_Framework.xml
-├── lib/
-│   ├── BootFlow.groovy
-│   ├── Lib.groovy
-│   ├── Columns.groovy
-│   ├── Flows.groovy
-│   ├── OrchestratorFlow.groovy
-│   └── ResultWriter.groovy
-├── test-data/
-│   ├── TS_01_DATA_FILE.xlsx
+<workspace-root>/
+├── lib/                         # shared Groovy libraries (one place)
+├── test-data/                   # shared Excel inputs + output logs
 │   ├── AA_Flow_Data.xlsx
 │   ├── Part107_Data.xlsx
 │   └── Results_Logs/
-└── drivers/
-    ├── Driver_MultiFile.groovy
-    ├── Driver_SingleFile.groovy
-    └── Driver_SingleFlow.groovy
+├── USS_Automation_Framework/    # this automation project folder
+│   └── USS_Automation_Framework-soapui-project.xml
+├── INT ENV PROJECT-soapui-project.xml
+├── TEST ENV PROJECT-soapui-project.xml
+└── (other projects).xml
 ```
 
----
-
-## ⚙️ 3. Library Responsibilities
-
-| Library | Description |
-|----------|-------------|
-| BootFlow.groovy | Loads and caches Lib, Columns, Flows, and Orchestrator classes. |
-| Lib.groovy | Reusable helpers (Excel, logging, data generation). |
-| Columns.groovy | Defines Excel column names. |
-| Flows.groovy | Registry of all project flows. |
-| OrchestratorFlow.groovy | Executes external SoapUI projects. |
-| ResultWriter.groovy | Writes results to Excel. |
+**Notes**
+- Keeping `lib/` and `test-data/` at the **workspace root** makes them reusable across multiple projects.
+- The automation project (`USS_Automation_Framework`) **calls other projects** by names defined in `Flows.groovy`. Those projects **must exist** in the same workspace.
 
 ---
 
-## 🔗 4. How Libraries and Data Files Work Together
+## Required Properties (Driver TestCase)
 
-1. Driver script calls BootFlow.groovy → loads libraries.
-2. Reads Excel file defined in DATA_FILES or TS_01_DATA_FILE.
-3. Iterates rows → executes flows defined in Flows.groovy.
-4. OrchestratorFlow runs target SoapUI projects and logs results.
+Define these **Custom Properties** on the **Driver TestCase** of `USS_Automation_Framework`:
 
----
+| Property                 | Value (example)                            | Purpose                                              |
+|-------------------       |--------------------------------------------|------------------------------------------------------|
+| `MULTIPLE_DATA_FILES`    | `AA_Flow_Data.xlsx, Part107_Data.xlsx`     | CSV list of Excel files under `<workspace>/test-data` |
+| `SINGLE_DATA_FILE`       | `AA_Flow_Data.xlsx`                        | Single file fallback for single-file driver          |
+| `FLOW_DEFAULT`           | `FLOW_REQUEST_APPROVE`                     | Default flow if a row doesn’t specify one            |
 
-## 🏃‍♂️ 5. What Happens After Running
+> You may also add optional **Project Properties** to override directories:
+> - `LIB_DIR`  (absolute or relative path to `lib/`)
+> - `DATA_DIR` (absolute or relative path to `test-data/`)
 
-1. Load libraries → read Excel → run flows.
-2. For each flow, open external project and execute test cases.
-3. Write results (PASS/FAIL) and timestamps back to Excel.
-4. Generate result log in `/test-data/Results_Logs/`.
-
----
-
-## 📄 6. Required Project Properties
-
-| Property | Description | Example |
-|-----------|-------------|----------|
-| DATA_FILES | Comma-separated Excel files | `AA_Flow_Data.xlsx, Part107_Data.xlsx` |
-| TS_01_DATA_FILE | Single Excel file name | `TS_01_DATA_FILE.xlsx` |
-
-Add these as Custom Properties under `Driver_RunAllFlows` Test Case.
+If these are not set, the scripts **auto-discover** them: first try `<projectDir>/…`, then `<workspace-root>/…`.
 
 ---
 
-## 🧭 7. Prerequisite Projects
+## Library Roles (unchanged conceptually)
+- **BootFlow.groovy** — Compiles & caches libraries once (context).
+- **Lib.groovy** — Common helpers (Excel I/O, logging, random data).
+- **Columns.groovy** — Central column names for Excel schema.
+- **Flows.groovy** — Flow Registry (project/suite/case mapping).
+- **OrchestratorFlow.groovy** — Calls external SoapUI projects & returns results.
+- **ResultWriter.groovy** — Writes result rows + timestamps back to Excel.
 
-Projects listed in `Flows.groovy` must exist in the **same SoapUI workspace** with matching suite and case names.
+---
+
+## Execution Flow
+1. **Driver** (e.g., `Driver_SingleOrMultiFile.groovy`) runs → calls **BootFlow**.
+2. **BootFlow** finds **lib/** (Project prop → `<projectDir>` → `<workspace-root>`), compiles libs, caches classes in `context`.
+3. Driver resolves **test-data/** (Project prop → `<projectDir>` → `<workspace-root>`).
+4. For each Excel row: pick **flow** (or `FLOW_DEFAULT`) → **OrchestratorFlow** runs mapped project/suite/cases → capture assertions → write results.
+
+**DETAILS**
+
+1. **Driver Script Location**
+
+   The driver script is implemented as a Groovy Test Step within a Test Case under the USS_Automation_Framework project.
+
+2. **Execution Flow**
+
+   The Driver Script invokes BootFlow.groovy once at the start of execution to compile and cache all shared library classes (e.g., Lib, Flows, Columns, OrchestratorFlow) into the SoapUI context.
+
+3. **Flow Registry Setup**
+
+   Navigate to Flows.groovy and define all available flows.
+   Each flow entry should specify:
+
+      - Target project name
+
+      - Test suite name
+
+      - Token generation case (if required)
+
+      - Test case list to execute
+
+4. **Excel Data Preparation**
+
+   Open your .xlsx test data file under test-data/.
+   Fill in the required columns such as:
+
+      - FLOW — must match the exact flow key defined in Flows.groovy
+
+      - Input parameters (matching target project custom property names)
+
+      - Any additional data required for each test run
+
+5. **Flow Resolution per Row**
+
+   The Driver Script reads the Excel file and, for each row, retrieves the FLOW value to determine which flow definition from Flows.groovy to execute.
+
+6. **Parameter Mapping**
+
+   In the target project (the one being called by the driver), go to the Custom Properties tab of the corresponding Test Case.
+   Each property name and value should correspond to the Excel column headers and values.
+   These are dynamically populated at runtime.
+
+7. **Execution & Logging**
+
+   The Driver Script orchestrates execution of the mapped flows and test cases across projects.
+   After each run:
+
+      - Test results (Pass/Fail) are written back to the Excel file.
+
+      - Workflow summary columns are updated for each executed row.
+
+8. **Assertion Handling**
+
+   If the REST test step contains assertions:
+
+     - Pass: The Excel log marks the row as “Passed.”
+
+     - Fail: The Excel log marks the row as “Failed.”
+
+9. **Workflow Summary**
+
+   A Workflow column is automatically generated in the Excel result file, showing the sequence of executed test cases and their individual statuses (e.g.,
+
+      - Request AA - PASSED  
+      - Approve AA - FAILED
+
+   ).
+
+
+---
+
+## Flow Registry Reminder
+Projects listed in `Flows.groovy` **must exist** in the workspace and their **suite/case names must match** exactly. Example:
 
 ```groovy
-FLOW_REQUEST_TEST: [
-  project: 'USS APIs',
-  suite  : 'AA Flows',
+FLOW_REQUEST_APPROVE: [
+  project  : 'TEST ENV PROJECT',
+  suite    : 'USS APIs',
   tokenCase: 'Get Token',
-  cases  : ['Request AA', 'Approve AA', 'Cancel AA']
+  cases    : ['Request AA', 'Approve AA']
 ]
 ```
 
 ---
 
-## 🧩 8. Execution Examples
+## Troubleshooting
+- `${#TestCase#reNo}` prints literally → header mismatch in Excel; update `Columns.groovy` or your sheet header.
+- “Project not found” → name typo or missing project in workspace.
+- No rows executed → your Result filter or Excel path is wrong; verify `DATA_FILES`/`TS_01_DATA_FILE` and that files exist under `<workspace>/test-data`.
+- Mixed logs → separate **Driver log**, **Script log**, **SoapUI log** by prefixing messages and writing result files to `test-data/Results_Logs`.
 
-**Single File Run**
-```groovy
-def fileName = context.expand('{#TestCase#TS_01_DATA_FILE}')
-Lib.runSingleFile(fileName)
-```
-
-**Multiple File Run**
-```groovy
-def fileList = context.expand('{#TestCase#DATA_FILES}')
-Lib.runMultiFile(fileList)
-```
-
----
-
-## ✅ 9. Expected Output
-
-- Excel updated with PASS/FAIL results.
-- Timestamped result file created in `/test-data/Results_Logs/`.
-- Console summary:
-  ```
-  ===== Execution Summary =====
-  Total Rows: 10
-  Passed: 8
-  Failed: 2
-  =============================
-  ```
-
----
-
-## 🧰 10. Troubleshooting
-
-| Issue | Cause | Fix |
-|--------|--------|-----|
-| `${#TestCase#reNo}` shows literally | Header renamed, update Columns.groovy |
-| Project not found | Missing in workspace |
-| No rows executed | “Result” column not “DID NOT RUN” |
-| Blank response | Assertion missing in target test |
-
----
-
-## 🧠 Author Notes
-
-- Modular flow definitions = no driver changes.
-- Keep Excel headers in sync with Columns.groovy.
-- Maintain consistent naming across all projects.
-
----
-
-### 📅 Version 2025-10-04

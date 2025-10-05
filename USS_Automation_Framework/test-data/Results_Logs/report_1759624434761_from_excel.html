@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>USS Automation Report</title>
+<style>
+  :root {
+    --bg:#0b1020; --card:#121a33; --muted:#8fa3bf; --ok:#16a34a; --bad:#dc2626; --unk:#a3a3a3;
+    --ink:#e6ecff; --ink2:#c7d2fe; --link:#8ab4ff; --chip:#182446; --code:#0a1228;
+    --ring:#203055;
+  }
+  *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+  a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+  header{
+    position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(10,18,40,.95),rgba(10,18,40,.75));
+    backdrop-filter:saturate(120%) blur(6px); border-bottom:1px solid var(--ring);
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:14px 18px}
+  .h-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .title{font-weight:700;font-size:18px;letter-spacing:.3px}
+  .spacer{flex:1}
+  .kpi{display:inline-flex;align-items:center;gap:8px;background:var(--chip);padding:6px 10px;border-radius:999px;border:1px solid var(--ring)}
+  .dot{width:8px;height:8px;border-radius:999px;display:inline-block}
+  .ok{background:var(--ok)} .bad{background:var(--bad)} .unk{background:var(--unk)}
+  button{
+    background:var(--chip);color:var(--ink);border:1px solid var(--ring);
+    padding:6px 10px;border-radius:10px;cursor:pointer
+  }
+  main{max-width:1100px;margin:18px auto;padding:0 18px 40px}
+  nav.toc{margin:16px 0 8px}
+  nav.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  nav.toc li a{display:flex;gap:8px;align-items:center;background:var(--card);padding:8px 10px;border-radius:10px;border:1px solid var(--ring)}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;font-size:12px;
+    border:1px solid var(--ring);background:var(--chip);color:var(--ink2)
+  }
+  .badge.pass{background:rgba(22,163,74,.15);color:#a7f3d0;border-color:rgba(22,163,74,.35)}
+  .badge.fail{background:rgba(220,38,38,.15);color:#fecaca;border-color:rgba(220,38,38,.35)}
+  .badge.unknown{background:rgba(163,163,163,.12);color:#e5e7eb;border-color:rgba(163,163,163,.35)}
+  section.flow{margin:14px 0}
+  details{background:var(--card);border:1px solid var(--ring);border-radius:14px;overflow:hidden}
+  summary{display:flex;gap:12px;align-items:center;cursor:pointer;padding:12px 14px}
+  summary .sum-text{font-weight:600}
+  summary .meta{margin-left:auto;color:var(--muted);font-size:12px}
+  .step-card{border-top:1px solid var(--ring);padding:12px}
+  .step-card .step-title{font-weight:600;margin-bottom:10px}
+  .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:900px){ .step-grid{grid-template-columns:1fr} }
+  .label{color:var(--muted);font-size:12px;margin-bottom:4px}
+  pre.code{
+    background:var(--code);border:1px solid var(--ring);border-radius:10px;padding:10px;
+    max-height:400px;overflow:auto;white-space:pre-wrap;word-break:break-word
+  }
+  footer{max-width:1100px;margin:24px auto 60px;padding:0 18px;color:var(--muted)}
+</style>
+<script>
+  function toggleAll(open){
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+  function scrollTopSmooth(){ window.scrollTo({top:0,behavior:'smooth'}); }
+</script>
+</head>
+<body>
+  <header>
+    <div class="wrap h-row">
+      <div class="title">USS Automation Report</div>
+      <span class="kpi"><span class="dot ok"></span><b>6</b> passed</span>
+      <span class="kpi"><span class="dot bad"></span><b>0</b> failed</span>
+      <span class="kpi"><span class="dot unk"></span><b>6</b> total</span>
+      <span class="spacer"></span>
+      <button onclick="toggleAll(true)">Expand all</button>
+      <button onclick="toggleAll(false)">Collapse all</button>
+      <button onclick="scrollTopSmooth()">Top</button>
+    </div>
+    <div class="wrap" style="padding-top:0;padding-bottom:12px;color:var(--muted);font-size:12px">
+      Generated: 2025-10-04 20:33:54 • Duration: 00h:00m:00s
+    </div>
+  </header>
+
+  <main>
+    <nav class="toc">
+      <ul>
+        <li>
+          <a href="#flow-1">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 1 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#flow-2">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 2 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#flow-3">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 3 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#flow-4">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 4 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#flow-5">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 5 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#flow-6">
+            <span class="badge pass">
+              PASS
+            </span>
+            <span>Row 6 • REST_PROJECT_1</span>
+            <span style="margin-left:auto;color:var(--muted);font-size:12px">
+              soapui_rest.xlsx
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+<section id="flow-1" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 1 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+<section id="flow-2" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 2 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+<section id="flow-3" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 3 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+<section id="flow-4" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 4 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+<section id="flow-5" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 5 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+<section id="flow-6" class="flow">
+  <details>
+    <summary>
+      <span class="badge pass">PASS</span>
+      <span class="sum-text">Row 6 • REST_PROJECT_1</span>
+      <span class="meta">
+        
+        soapui_rest.xlsx
+      </span>
+    </summary>
+
+    <div class="step-card pass">
+      <div class="step-title">From Excel</div>
+      <div class="step-grid">
+        <div>
+          <div class="label">Request</div>
+          <pre class="code">1. Posts TestCase - PASSED
+2. Copy of Posts TestCase - PASSED</pre>
+        </div>
+        <div>
+          <div class="label">Response</div>
+          <pre class="code">Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]
+
+Copy of Posts TestCase:
+[
+    {
+        &quot;userId&quot;: 1,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+        &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+    }
+]</pre>
+        </div>
+      </div>
+    </div>
+
+  </details>
+</section>
+
+
+  </main>
+  <footer>
+    <div>File: report_1759624434761_from_excel.html • Location: C:\Users\safiu\projects\soapui-base\projects xml\USS_Automation_Framework\test-data\Results_Logs</div>
+  </footer>
+</body>
+</html>

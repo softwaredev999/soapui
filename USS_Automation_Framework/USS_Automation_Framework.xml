@@ -724,12 +724,12 @@ if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
 
 // ---------- 1) Build the list of data files to run ----------
 def dataDir  = new File(context.expand('${projectDir}'), 'test-data')
-def listProp = context.testCase.getPropertyValue('DATA_FILES')    // comma-separated file names
+def listProp = context.testCase.getPropertyValue('MULTIPLE_DATA_FILES')    // comma-separated file names
 List<File> files = []
 if (listProp?.trim()) {
   files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
 } else {
-  def single = Lib.dataFile(context, 'TS_01_DATA_FILE', 'CASE')   // fallback to single file prop
+  def single = Lib.dataFile(context, 'SINGLE_DATA_FILE', 'CASE')   // fallback to single file prop
   files = [ new File(single) ]
 }
 files = files.findAll { it.exists() }
@@ -876,10 +876,423 @@ def runFile = { File f ->
 files.each { runFile(it) }
 
 log.info "++++++++++ DRIVER DONE ++++++++++"
-]]></script></con:config></con:testStep><con:setupScript>log.info "[TC-SETUP] SET UP " + testCase.name
+]]></script></con:config></con:testStep><con:testStep type="groovy" name="Driver_SingleOrMultiFile - Generate Report" id="99207f59-cbbf-4a1d-a4fe-e8ca2f1de2fa"><con:settings/><con:config><script><![CDATA[// Driver: run one or more Excel files, each row picks a flow and runs its test cases.
+// - Executes rows based on 'Result' column (or RUN_ALL_ROWS=true to ignore filter)
+// - Writes Result / Workflow / JSON Response back to Excel
+// - Reporting is NOT handled here (one-line handoff at the very end)
+
+log.info "++++++++++ MULTI-FILE DRIVER (exec-only) ++++++++++\n"
+
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import com.eviware.soapui.impl.wsdl.teststeps.RestTestRequestStep
+import com.eviware.soapui.impl.wsdl.teststeps.WsdlTestRequestStep
+
+// ---------- Load framework libraries (BootFlow caches classes on context) ----------
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib'];        Orchestrator = context['Orchestrator']
+  Columns      = context['Columns'];    Flows        = context['Flows']
+}
+
+// ---------- Toggle (Test Case → Custom Properties) ----------
+def RUN_ALL_ROWS = (context.testCase.getPropertyValue('RUN_ALL_ROWS') ?: 'false').equalsIgnoreCase('true')
+
+// ---------- Paths ----------
+def projDir = new File(context.expand('${projectDir}'))
+def dataDir = new File(projDir, 'test-data')
+
+// ---------- Build the list of data files ----------
+def listProp = context.testCase.getPropertyValue('MULTIPLE_DATA_FILES')  // CSV under test-data/
+List<File> files = []
+if (listProp?.trim()) {
+  files = listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+} else {
+  String singlePath = null
+  try { singlePath = Lib.dataFile(context, 'SINGLE_DATA_FILE', 'CASE') } catch (Throwable ignore) {}
+  files = [ new File(singlePath) ]
+}
+files = files.findAll { it.exists() }
+assert files, "No data files found under ${dataDir.absolutePath}"
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+// ---------- Defaults & helpers ----------
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+def tryPretty = { String raw -> if (!raw) return ''; try { JsonOutput.prettyPrint(raw) } catch (ignore) { raw } }
+def lastResponse = { tc ->
+  for (def step : tc.getTestStepList().reverse()) {
+    try {
+      if (step instanceof RestTestRequestStep || step instanceof WsdlTestRequestStep) {
+        def resp = step.getTestRequest()?.getResponse()?.getContentAsString()
+        if (resp) return resp
+      }
+    } catch (ignore) {}
+  }
+  ''
+}
+
+// ---------- Per-file execution ----------
+def runFile = { File f ->
+  final String path = f.absolutePath
+  final List<Map> rows = Lib.readXlsx(path)
+  log.info "\n=========[${f.name}] Rows read = ${rows.size()}=========\n"
+
+  def project   = context.testCase.testSuite.project
+  def workspace = project.workspace
+
+  def tokenRan = new HashSet<String>()  // run token once per (project,suite,token) per file
+  int passCnt = 0, failCnt = 0, skipCnt = 0
+
+  rows.eachWithIndex { row, i ->
+    Map<String,String> props = [:]; row.each { k, v -> props[k] = (v ?: '').toString() }
+
+    def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+    def defn = Flows.REGISTRY[flowName]
+    if (!defn) { log.warn "[${f.name}] Row ${i+1}: Unknown flow '${flowName}' — skipping"; skipCnt++; return }
+
+    def currentResult = (row['Result'] ?: '').toString().trim()
+    boolean shouldRun = RUN_ALL_ROWS || currentResult.equalsIgnoreCase('DID NOT RUN') || currentResult == ''
+    if (!shouldRun) { skipCnt++; return }
+
+    def tpName = (props['__TARGET_PROJECT__'] ?: defn.project ?: project.name) as String
+    def suite  = (defn.suite as String)
+    def token  = (defn.tokenCase ?: defn.token ?: null) as String
+
+    if (token) {
+      def key = "${tpName}::${suite}::${token}"
+      if (!tokenRan.contains(key)) {
+        def tp = workspace?.getProjectByName(tpName)
+        if (!tp) throw new IllegalArgumentException("Target project not open: ${tpName}")
+        Orchestrator.runCases(tp, suite, [token], props, true)
+        tokenRan.add(key)
+      }
+      props['__SKIP_TOKEN__'] = 'true'
+    }
+
+    try {
+      // Make whole row available to downstream cases
+      project.setPropertyValue('ROW_JSON', new JsonBuilder(props).toString())
+
+      // Run the flow
+      def results = Orchestrator.runFlowByName(project, workspace, Flows.REGISTRY, flowName, props, true, log)
+
+      // --- Write Workflow (multi-line) ---
+      def workflowSummary = results.withIndex().collect { r, idx ->
+        def ok = r.status?.equalsIgnoreCase('FINISHED')
+        "${idx+1}. ${r.case} - " + (ok ? 'PASSED' : (r.status ?: 'UNKNOWN'))
+      }.join('\n')
+      Lib.writeCellByHeader(path, null, 'Workflow', i, workflowSummary)
+
+      // --- Write JSON Response blob (last response per case) ---
+      def tp = workspace ? (workspace.getProjectByName(tpName) ?: project) : project
+      def suiteObj = tp.getTestSuiteByName(suite)
+      def pieces = []
+      results.each { r ->
+        def tc = suiteObj?.getTestCaseByName(r.case)
+        def raw = tc ? lastResponse(tc) : ''
+        def pretty = tryPretty(raw)
+        if (pretty.length() > 8000) pretty = pretty.substring(0, 8000) + "\n...[truncated]"
+        pieces << "${r.case}:\n${pretty}"
+      }
+      Lib.writeCellByHeader(path, null, 'JSON Response', i, pieces.join('\n\n'))
+
+      // --- Write Result (PASS if every case FINISHED) ---
+      def overallPass = results && results.every { it.status?.equalsIgnoreCase('FINISHED') }
+      Lib.writeCellByHeader(path, null, 'Result', i, overallPass ? 'PASS' : 'FAIL')
+      if (overallPass) passCnt++ else failCnt++
+
+    } catch (Throwable t) {
+      log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+      Lib.writeCellByHeader(path, null, 'Result', i, 'FAIL')
+      failCnt++
+    }
+  }
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// ---------- Run all files ----------
+files.each { runFile(it) }
+
+// ---------- ONE-LINE handoff to the reporter (reads Excel + builds HTML) ----------
+new GroovyClassLoader(this.class.classLoader)
+  .parseClass(new File(new File(context.expand('${projectDir}')),'lib/ReporterFromExcel.groovy').text,'ReporterFromExcel.groovy')
+  .newInstance()
+  .generate(context, log)
+
+
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+
+
+
+
+]]></script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="462c75f1-4ebe-4abd-bba1-d68fa158b1b2" disabled="true"><con:settings/><con:config><script><![CDATA[// Driver: run one or more Excel files, each row picks a flow and runs its test cases.
+
+log.info "++++++++++ MULTI-FILE DRIVER ++++++++++\n"
+
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import com.eviware.soapui.impl.wsdl.teststeps.RestTestRequestStep
+import com.eviware.soapui.impl.wsdl.teststeps.WsdlTestRequestStep
+
+// POI imports
+import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.ss.usermodel.Row
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.FileInputStream
+import java.io.FileOutputStream
+
+// ---------- Load libraries ----------
+def Lib          = context['Lib']
+def Orchestrator = context['Orchestrator']
+def Columns      = context['Columns']
+def Flows        = context['Flows']
+if (!(Lib instanceof Class) || !(Orchestrator instanceof Class) ||
+    !(Columns instanceof Class) || !(Flows instanceof Class)) {
+  evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+  Lib          = context['Lib']
+  Orchestrator = context['Orchestrator']
+  Columns      = context['Columns']
+  Flows        = context['Flows']
+}
+
+int FIRST_DATA_ROW = (context.testCase.getPropertyValue('FIRST_DATA_ROW') ?: '2') as int  // header is row 1
+
+def dataDir  = new File(context.expand('${projectDir}'), 'test-data')
+def listProp = context.testCase.getPropertyValue('MULTIPLE_DATA_FILES')
+List<File> files = listProp?.trim()
+  ? listProp.split(/\s*,\s*/).collect { new File(dataDir, it) }
+  : [ new File(Lib.dataFile(context, 'SINGLE_DATA_FILE', 'CASE')) ]
+files = files.findAll { it.exists() }
+if (!files) throw new FileNotFoundException("No data files found under ${dataDir.absolutePath}")
+log.info "Data files to process (${files.size()}): ${files*.name}"
+
+def defaultFlow = context.testCase.getPropertyValue('FLOW_DEFAULT') ?: 'FLOW_REQUEST_APPROVE'
+
+// helpers
+def tryPretty = { String raw -> if (!raw) return ''; try { JsonOutput.prettyPrint(raw) } catch (ignore) { raw } }
+def lastResponse = { tc ->
+  for (def step : tc.getTestStepList().reverse()) {
+    try {
+      if (step instanceof RestTestRequestStep || step instanceof WsdlTestRequestStep) {
+        def resp = step.getTestRequest()?.getResponse()?.getContentAsString()
+        if (resp) return resp
+      }
+    } catch (ignore) {}
+  }
+  ''
+}
+
+// -------- per-file --------
+def runFile = { File f ->
+  final String path = f.absolutePath
+
+  // Open workbook ONCE for this file
+  FileInputStream fis = new FileInputStream(f)
+  XSSFWorkbook wb = new XSSFWorkbook(fis); fis.close()
+  Sheet sh = wb.getSheetAt(0)
+
+  // Ensure headers and capture their col indexes
+  Row header = sh.getRow(0) ?: sh.createRow(0)
+  def getOrCreateCol = { String h ->
+    int found = -1
+    int last = Math.max(header.getLastCellNum(), 0)
+    for (int c=0; c<last; c++) {
+      def cell = header.getCell(c)
+      if (cell && cell.toString().trim().equalsIgnoreCase(h)) { found = c; break }
+    }
+    if (found == -1) {
+      found = Math.max(header.getLastCellNum(), 0)
+      header.createCell(found).setCellValue(h)
+      log.info "[XLSX] Added header '${h}' in ${f.name}"
+    }
+    return found
+  }
+  int COL_WORKFLOW = getOrCreateCol('Workflow')
+  int COL_JSON     = getOrCreateCol('JSON Response')
+  int COL_RESULT   = getOrCreateCol('Result')
+
+  // Read rows (your reader closes its own file handle)
+  final List<Map> rows = Lib.readXlsx(path)
+  log.info "\n=========[${f.name}] Rows read = ${rows.size()}=========\n"
+
+  def project   = context.testCase.testSuite.project
+  def workspace = project.workspace
+  def tokenRan  = new HashSet<String>()
+
+  int passCnt = 0, failCnt = 0, skipCnt = 0
+
+  // helper to set cell on exact row/col (0-based POI row)
+  def setCell = { int excelRow1, int col, String val ->
+    int rIdx = Math.max(excelRow1 - 1, 1)         // prevent overwriting header
+    Row r = sh.getRow(rIdx) ?: sh.createRow(rIdx)
+    def c = r.getCell(col) ?: r.createCell(col)
+    c.setCellValue(val ?: "")
+  }
+
+  rows.eachWithIndex { row, i ->
+    def currentResult = (row['Result'] ?: '').toString().trim()
+
+    if (currentResult.equalsIgnoreCase('DID NOT RUN') || currentResult == '') {
+      Map<String,String> props = [:]; row.each { k, v -> props[k] = (v ?: '').toString() }
+
+      def flowName = (row[Columns.NAMES.FLOW] ?: defaultFlow).toString().trim()
+      def defn = Flows.REGISTRY[flowName]
+      if (!defn) throw new IllegalArgumentException("Unknown flow in row ${i+1}: ${flowName}")
+
+      def tpName = (props['__TARGET_PROJECT__'] ?: defn.project ?: project.name) as String
+      def suite  = (defn.suite as String)
+      def token  = (defn.tokenCase ?: defn.token ?: null) as String
+
+      if (token) {
+        def key = "${tpName}::${suite}::${token}"
+        if (!tokenRan.contains(key)) {
+          def tp = workspace?.getProjectByName(tpName)
+          if (!tp) throw new IllegalArgumentException("Target project not open: ${tpName}")
+          Orchestrator.runCases(tp, suite, [token], props, true)
+          tokenRan.add(key)
+        }
+        props['__SKIP_TOKEN__'] = 'true'
+      }
+
+      try {
+        project.setPropertyValue('ROW_JSON', new JsonBuilder(props).toString())
+
+        def results = Orchestrator.runFlowByName(project, workspace, Flows.REGISTRY, flowName, props, true, log)
+
+        // workflow summary text
+        def workflowSummary = results.withIndex().collect { r, idx ->
+          def ok = r.status?.equalsIgnoreCase('FINISHED')
+          "${idx+1}. ${r.case} - " + (ok ? 'PASSED' : (r.status ?: 'UNKNOWN'))
+        }.join('\n')
+
+        // json response blob (last response from each case)
+        def tp = workspace ? (workspace.getProjectByName(tpName) ?: project) : project
+        def suiteObj = tp.getTestSuiteByName(suite)
+        def pieces = []
+        results.each { r ->
+          def tc = suiteObj?.getTestCaseByName(r.case)
+          def raw = tc ? lastResponse(tc) : ''
+          def pretty = tryPretty(raw)
+          if (pretty.length() > 8000) pretty = pretty.substring(0, 8000) + "\n...[truncated]"
+          pieces << "${r.case}:\n${pretty}"
+        }
+        def jsonBlob = pieces.join('\n\n')
+
+        // overall status
+        def pass = results && results.every { it.status?.equalsIgnoreCase('FINISHED') }
+
+        // ---- write to the ONE open workbook ----
+        int excelRow = FIRST_DATA_ROW + i
+        setCell(excelRow, COL_WORKFLOW, workflowSummary)
+        setCell(excelRow, COL_JSON,     jsonBlob)
+        setCell(excelRow, COL_RESULT,   pass ? 'PASS' : 'FAIL')
+        log.info "[WRITE] i=${i} -> row=${excelRow}"
+
+        if (pass) passCnt++ else failCnt++
+
+      } catch (Throwable t) {
+        log.error "[${f.name}] Row ${i+1} FAILED: ${t.message}", t
+        int excelRow = FIRST_DATA_ROW + i
+        setCell(excelRow, COL_RESULT, 'FAIL')
+        failCnt++
+      }
+    } else {
+      skipCnt++
+    }
+  }
+
+  // Save workbook ONCE after all rows of this file
+  FileOutputStream fos = new FileOutputStream(f)
+  wb.write(fos); fos.close(); wb.close()
+
+  log.info "[${f.name}] Summary: PASS=${passCnt}, FAIL=${failCnt}, SKIP=${skipCnt}"
+}
+
+// run all files
+files.each { runFile(it) }
+
+log.info "++++++++++ DRIVER DONE ++++++++++"
+
+
+]]></script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script 2" id="fb8d4ec9-5e28-4a7d-ab63-8aca12896fc9" disabled="true"><con:settings/><con:config><script>import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.ss.usermodel.*
+import java.io.*
+
+def file = new File(new File(context.expand('${projectDir}'), 'test-data'), 'soapui_rest.xlsx')
+assert file.exists() : "File not found: ${file}"
+
+FileInputStream fis = new FileInputStream(file)
+def wb = new XSSFWorkbook(fis); fis.close()
+def sh = wb.getSheetAt(0)
+
+// ensure header
+Row header = sh.getRow(0) ?: sh.createRow(0)
+int col = -1
+for (int c=0; c&lt;Math.max(header.getLastCellNum(),0); c++) {
+  def cell = header.getCell(c)
+  if (cell &amp;&amp; cell.toString().trim().equalsIgnoreCase('Workflow')) { col=c; break }
+}
+if (col==-1) { col = Math.max(header.getLastCellNum(),0); header.createCell(col).setCellValue('Workflow') }
+
+// write rows 2..7 (header is row 1)
+for (int r=2; r&lt;=7; r++) {
+  Row row = sh.getRow(r-1) ?: sh.createRow(r-1)
+  def cell = row.getCell(col) ?: row.createCell(col)
+  cell.setCellValue("Row ${r}")
+}
+FileOutputStream fos = new FileOutputStream(file); wb.write(fos); fos.close(); wb.close()
+log.info "Wrote Workflow values on rows 2..7"
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script test lib" id="8075ed76-5b27-4ad5-82d4-a37ba4f54aa8" disabled="true"><con:settings/><con:config><script>// --- Clear old cache just for this probe (safe) ---
+['Lib','Columns','Flows','Orchestrator','ResultHtml',
+ '__LIB_DIR__','__DATA_DIR__',
+ '__LIB_SRC_Lib__','__LIB_SRC_Columns__','__LIB_SRC_Flows__','__LIB_SRC_Orchestrator__','__LIB_SRC_ResultHtml__',
+ '__LIB_MD5_Lib__','__LIB_MD5_Columns__','__LIB_MD5_Flows__','__LIB_MD5_Orchestrator__','__LIB_MD5_ResultHtml__'
+].each { context.remove(it) }
+
+// --- Load BootFlow from the project folder ---
+evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+
+def projLib = new File(context.expand('${projectDir}'), 'lib').absolutePath
+def wsLib   = new File(new File(context.expand('${projectDir}')).parentFile, 'lib').absolutePath
+
+log.info "[EXPECT] project lib : ${projLib}"
+log.info "[EXPECT] workspace lib: ${wsLib}"
+log.info "[ACTUAL]  LIB_DIR     : ${context['__LIB_DIR__']}"
+log.info "[ACTUAL]  DATA_DIR    : ${context['__DATA_DIR__']}"
+
+['Lib','Columns','Flows','Orchestrator','ResultHtml'].each { k ->
+  def src = context["__LIB_SRC_${k}__"]
+  def md5 = context["__LIB_MD5_${k}__"]
+  if (src) log.info String.format("[ACTUAL] %-12s from %s | md5=%s", k, src, md5)
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script lib 1" id="6b9b6de2-6b9f-437f-ae6d-48d40ff89ce5" disabled="true"><con:settings/><con:config><script>// wipe caches for the probe
+['Lib','Columns','Flows','Orchestrator','ResultHtml','__LIB_DIR__','__DATA_DIR__',
+ '__LIB_SRC_Lib__','__LIB_SRC_Columns__','__LIB_SRC_Flows__','__LIB_SRC_Orchestrator__','__LIB_SRC_ResultHtml__'
+].each { context.remove(it) }
+
+// load BootFlow from *project* folder
+evaluate(new File(new File(context.expand('${projectDir}')), 'lib/BootFlow.groovy'))
+
+log.info "[EXPECT] project lib : " + new File(context.expand('${projectDir}'), 'lib').absolutePath
+log.info "[ACTUAL]  __LIB_DIR__ : " + (context['__LIB_DIR__'])
+log.info "[ACTUAL]  __DATA_DIR__: " + (context['__DATA_DIR__'])
+
+['Lib','Columns','Flows','Orchestrator','ResultHtml'].each { k ->
+  def src = context["__LIB_SRC_${k}__"]
+  if (src) log.info String.format("[CLASS ] %-12s from %s", k, src)
+}
+</script></con:config></con:testStep><con:setupScript>log.info "[TC-SETUP] SET UP " + testCase.name
 </con:setupScript>
             <con:tearDownScript>log.info "[TC-SETUP] TEAR DOWN " + testCase.name</con:tearDownScript>
-            <con:properties><con:property><con:name>DATA_FILE</con:name><con:value>testdata.xlsx</con:value></con:property><con:property><con:name>TS_01_DATA_FILE</con:name><con:value>soapui_rest.xlsx</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>DATA_FILES</con:name><con:value/></con:property></con:properties>
+            <con:properties><con:property><con:name>DATA_FILE</con:name><con:value>testdata.xlsx</con:value></con:property><con:property><con:name>SINGLE_DATA_FILE</con:name><con:value>soapui_rest.xlsx</con:value></con:property><con:property><con:name>id</con:name><con:value>1</con:value></con:property><con:property><con:name>name</con:name><con:value>asdf asdfsafs</con:value></con:property><con:property><con:name>MULTIPLE_DATA_FILES</con:name><con:value/></con:property></con:properties>
         </con:testCase>
         <con:properties>
             <con:property>
